@@ -1,0 +1,63 @@
+.staff-view{
+    display: flex;
+    padding: 10px;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    .card{
+        background-color: #ffffff;
+        width: 45%;
+        border-radius: 4px;
+        padding: 10px;
+        margin-bottom: 10px;
+        .card-title{
+            padding-bottom: 10px;
+        }
+        .list-staff{
+            display: flex;
+            .photo{
+                img{
+                    width: 50px;
+                    height: 50px;
+                }
+            }
+            
+            .name-staff{
+                font-size: 19px;
+            }
+            .status-staff{
+                width: 33px;
+                height: 14px;
+                background: #08B1BA;
+                border-radius: 10px;
+                padding: 0px;
+                text-align: center;
+                font-size: 10px;
+            }
+            .button{
+                display: flex;
+                align-items: center;
+                margin-left: 77px;
+                .button-accept{
+                    width: 40px;
+                    height: 16px;
+                    padding: 5px;
+                    font-size: 13px;
+                    background-color: #1AA053;
+                    margin-right: 5px;
+                    border-radius: 15px;
+                    
+                }
+                .button-reject{
+                    width: 39px;
+                    height: 16px;
+                    padding: 5px;
+                    font-size: 13px;
+                    background-color: #C03221;
+                    border-radius: 15px;
+                }
+            }
+        }
+    }
+
+}
