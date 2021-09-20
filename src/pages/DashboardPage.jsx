@@ -8,15 +8,15 @@ const DashboardPage = () => (
             <div className="list-staff">
                 <div className="photo"> <img src={Frame} alt="icon" /> </div>
                 <div className="name-status">
-                <div className="name-staff">Aldi Nugraha</div>
-                <div className="status-staff">Sakit</div>
+                    <div className="name-staff">Aldi Nugraha</div>
+                    <div className="status-staff">Sakit</div>
                 </div>           
             </div>
             <div className="list-staff">
                 <div className="photo"> <img src={Frame} alt="icon" /> </div>
                 <div className="name-status">
-                <div className="name-staff">Aldi Nugraha</div>
-                <div className="status-staff">Sakit</div>
+                    <div className="name-staff">Aldi Nugraha</div>
+                    <div className="status-staff">Sakit</div>
                 </div>           
             </div>
         </div>
@@ -25,12 +25,12 @@ const DashboardPage = () => (
             <div className="list-staff">
                 <div className="photo"> <img src={Frame} alt="icon" /> </div>
                 <div className="name-status">
-                <div className="name-staff">Aldi Nugraha</div>
-                <div className="status-staff">Sakit</div>
+                    <div className="name-staff">Aldi Nugraha</div>
+                    <div className="status-staff">Sakit</div>
                 </div>           
                 <div className="button">
-                <div className="button-accept">Accept</div>
-                <div className="button-reject">Reject</div>          
+                    <div className="button-accept">Accept</div>
+                    <div className="button-reject">Reject</div>          
             </div>
             </div>
             <div className="list-staff">

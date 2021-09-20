@@ -7,7 +7,7 @@
     .card{
         background-color: #ffffff;
         width: 45%;
-        border-radius: 4px;
+        border-radius: 12px;
         padding: 10px;
         margin-bottom: 10px;
         .card-title{
@@ -46,6 +46,7 @@
                     background-color: #1AA053;
                     margin-right: 5px;
                     border-radius: 15px;
+                    cursor: pointer;
                     
                 }
                 .button-reject{
@@ -55,6 +56,7 @@
                     font-size: 13px;
                     background-color: #C03221;
                     border-radius: 15px;
+                    cursor: pointer;
                 }
             }
         }
