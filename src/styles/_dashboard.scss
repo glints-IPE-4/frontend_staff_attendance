@@ -15,29 +15,41 @@
     }
     .list-staff {
       display: flex;
-      .photo {
-        img {
-          width: 50px;
-          height: 50px;
+      justify-content: space-between;
+      .list-staff-group {
+        display: flex;
+        .photo {
+          img {
+            width: 50px;
+            height: 50px;
+          }
         }
-      }
-
-      .name-staff {
-        font-size: 19px;
+        .name-status {
+          display: flex;
+          flex-direction: column;
+          justify-content: center;
+          padding: 4px;
+          .name-staff {
+            font-size: 19px;
+          }
+        }
       }
       .status-staff {
         width: 33px;
-        height: 14px;
+        height: 13px;
         background: #08b1ba;
         border-radius: 10px;
         padding: 0px;
         text-align: center;
         font-size: 10px;
+        color: white;
+        display: flex;
+        justify-content: center;
+        align-items: center;
       }
-      .button {
+      .button-request {
         display: flex;
         align-items: center;
-        margin-left: 77px;
         .button-accept {
           width: 40px;
           height: 16px;
@@ -46,6 +58,7 @@
           background-color: #1aa053;
           margin-right: 5px;
           border-radius: 15px;
+          color: #ffffff;
           cursor: pointer;
         }
         .button-reject {
@@ -56,6 +69,7 @@
           background-color: #c03221;
           border-radius: 15px;
           cursor: pointer;
+          color: #ffffff;
         }
       }
     }
