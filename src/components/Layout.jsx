@@ -4,7 +4,7 @@ const Layout = Children => () =>
   (
     <>
       <Sidebar />
-      <div className="container-content">
+      <div className='container-content'>
         <Children />
       </div>
     </>
