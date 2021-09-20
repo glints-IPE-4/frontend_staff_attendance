@@ -34,10 +34,9 @@
           }
         }
       }
-      .status-staff {
+      .status-staff-masuk {
         width: 33px;
         height: 13px;
-        background: #08b1ba;
         border-radius: 10px;
         padding: 0px;
         text-align: center;
@@ -46,6 +45,20 @@
         display: flex;
         justify-content: center;
         align-items: center;
+        background-color: #1aa053;
+      }
+      .status-staff-sakit {
+        width: 33px;
+        height: 13px;
+        border-radius: 10px;
+        padding: 0px;
+        text-align: center;
+        font-size: 10px;
+        color: white;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        background-color: #08b1ba;
       }
       .button-request {
         display: flex;
