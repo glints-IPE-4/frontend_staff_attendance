@@ -3,37 +3,39 @@ import ListDayOff from '../components/ListDayOff';
 import RequestDayOff from '../components/RequestDayOff';
 import ListOvertime from '../components/ListOvertime';
 import RequestOvertime from '../components/RequestOvertime';
+import AttendanceChart from '../components/AttendanceChart';
 
 const listDayOffs = [
-  { name: 'Jake Blossom', status: 'Sakit' },
-  { name: 'Billy Agusta', status: 'Sakit' },
-  { name: 'Dany Jo', status: 'Sakit' },
-  { name: 'Afan Dayu Laksono', status: 'Sakit' },
-  { name: 'Afan Dayu Laksono', status: 'Sakit' },
-  { name: 'Afan Dayu Laksono', status: 'Sakit' },
-  { name: 'Afan Dayu Laksono', status: 'Sakit' },
+  { name: 'Jake Blossom', status: 'Sakit', id: 1 },
+  { name: 'Billy Agusta', status: 'Sakit', id: 2 },
+  { name: 'Dany Jo', status: 'Sakit', id: 3 },
+  { name: 'Afan Dayu Laksono', status: 'Sakit', id: 4 },
+  { name: 'Afan Dayu Laksono', status: 'Sakit', id: 5 },
+  { name: 'Afan Dayu Laksono', status: 'Sakit', id: 6 },
+  { name: 'Afan Dayu Laksono', status: 'Sakit', id: 7 },
 ];
 const requestDayOffs = [
-  { name: 'Jake Blossom', status: 'Sakit' },
-  { name: 'Billy Agusta', status: 'Sakit' },
-  { name: 'Dany Jo', status: 'Sakit' },
-  { name: 'Afan Dayu Laksono', status: 'Sakit' },
+  { name: 'Jake Blossom', status: 'Sakit', id: 1 },
+  { name: 'Billy Agusta', status: 'Sakit', id: 2 },
+  { name: 'Dany Jo', status: 'Sakit', id: 3 },
+  { name: 'Afan Dayu Laksono', status: 'Sakit', id: 4 },
 ];
 const listOvertimes = [
-  { name: 'Jake Blossom', status: 'masuk' },
-  { name: 'Daddy Sugar', status: 'masuk' },
-  { name: 'Dany Jo', status: 'masuk' },
-  { name: 'Afan Dayu Laksono', status: 'masuk' },
+  { name: 'Jake Blossom', status: 'Masuk', id: 1 },
+  { name: 'Billy Agusta', status: 'Masuk', id: 2 },
+  { name: 'Dany Jo', status: 'Masuk', id: 3 },
+  { name: 'Afan Dayu Laksono', status: 'Masuk', id: 4 },
 ];
 const requestOvertimes = [
-  { name: 'Jake Blossom', status: 'masuk' },
-  { name: 'Daddy Sugar', status: 'masuk' },
-  { name: 'Dany Jo', status: 'masuk' },
-  { name: 'Afan Dayu Laksono', status: 'masuk' },
+  { name: 'Jake Blossom', status: 'Masuk', id: 1 },
+  { name: 'Billy Agusta', status: 'Masuk', id: 2 },
+  { name: 'Dany Jo', status: 'Masuk', id: 3 },
+  { name: 'Afan Dayu Laksono', status: 'Masuk', id: 4 },
 ];
 
 const DashboardPage = () => (
   <div className='view'>
+    <AttendanceChart />
     <div className='card'>
       <div className='card-title'>List Day Off</div>
       <div className='list-staff-container'>
