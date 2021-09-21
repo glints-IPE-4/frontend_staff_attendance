@@ -3,7 +3,7 @@ import Layout from './components/Layout';
 import DashboardPage from './pages/DashboardPage';
 import StaffPage from './pages/StaffPage';
 import LoginPage from './pages/LoginPage';
-import New from './components/New';
+import AddStaff from './components/AddStaff';
 import './styles/index.scss';
 
 function App() {
@@ -13,7 +13,7 @@ function App() {
         <Route path='/login' component={LoginPage} />
         <Route path='/' exact component={Layout(DashboardPage)} />
         <Route path='/StaffPage' exact component={Layout(StaffPage)} />
-        <Route path='/StaffPage/New' exact component={Layout(New)} />
+        <Route path='/StaffPage/AddStaff' exact component={Layout(AddStaff)} />
       </Switch>
     </Router>
   );

@@ -1,17 +1,17 @@
 import React from 'react';
 import { Link, useRouteMatch, Switch, Route } from 'react-router-dom';
-import New from '../components/New';
+import AddStaff from '../components/AddStaff';
 
 const StaffPage = () => {
   const { url, path } = useRouteMatch();
   return (
     <div>
-      <Link to={`${url}/New`}>
+      <Link to={`${url}/AddStaff`}>
         <button type='submit'>Add User</button>
       </Link>
       <Switch>
-        <Route path={`${path}/:New`}>
-          <New />
+        <Route path={`${path}/:AddStaff`}>
+          <AddStaff />
         </Route>
       </Switch>
     </div>
