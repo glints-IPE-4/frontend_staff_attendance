@@ -4,6 +4,7 @@ import Category from '../assets/svg/Category.svg';
 import Users from '../assets/svg/Users.svg';
 import Frame from '../assets/svg/Frame.svg';
 import Notification from '../assets/svg/Notification.svg';
+import Logout from '../assets/svg/Logout.svg';
 
 const menuItems = [
   { name: 'Dashboard', to: '/DashboardPage', icon: Category },
@@ -22,9 +23,12 @@ const Sidebar = () => (
         <img src={Notification} alt='Notification' />
       </div>
       <img src={Frame} alt='Frame' />
-      <div>
+      <div className='staff'>
         <div className='header-staff'>Aldi Nugraha</div>
         <div className='role-staff'>Admin</div>
+      </div>
+      <div className='logout'>
+        <img src={Logout} alt='Logout' />
       </div>
     </div>
     <div className='sidebar'>
