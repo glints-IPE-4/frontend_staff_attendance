@@ -17,17 +17,26 @@
       background-color: #1aa053;
       border-radius: 18px;
       padding: 5px;
+      color: white;
       cursor: pointer;
     }
     img {
       cursor: pointer;
     }
   }
+
   .header-role {
     display: flex;
     img {
       width: 57px;
       height: 40px;
+    }
+    .notif {
+      display: flex;
+      img {
+        width: 29px;
+        height: 44px;
+      }
     }
   }
   .sidebar {
