@@ -3,5 +3,16 @@
 html {
   font-family: 'Inter', sans-serif;
 }
+body {
+  margin: 0;
+  padding: 0;
+  font-size: 16px;
+  font-family: 'inter';
+  background-color: #e5e5e5;
+}
+
 @import 'button';
 @import 'login';
+@import 'sidebar';
+@import 'container';
+@import 'dashboard';
