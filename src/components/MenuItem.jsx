@@ -1,24 +1,28 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
+import { NavLink } from 'react-router-dom';
 import PropTypes from 'prop-types';
 
 const MenuItem = props => {
-  const { name, to, icon } = props;
+  const { name, to, Icon, exact } = props;
 
   return (
-    <Link to={to}>
+    <NavLink to={to} exact={exact} activeClassName='selected'>
       <div>
-        <img src={icon} alt='icon' />
+        <Icon />
       </div>
       <span>{name}</span>
-    </Link>
+    </NavLink>
   );
 };
 
 MenuItem.propTypes = {
   name: PropTypes.string.isRequired,
   to: PropTypes.string.isRequired,
-  icon: PropTypes.string.isRequired,
+  Icon: PropTypes.string.isRequired,
+  exact: PropTypes.bool,
+};
+MenuItem.defaultProps = {
+  exact: false,
 };
 
 export default MenuItem;

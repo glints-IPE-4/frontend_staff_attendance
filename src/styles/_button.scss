@@ -5,6 +5,9 @@
   color: white;
   border: none;
   cursor: pointer;
+  &.rounded {
+    border-radius: 100px;
+  }
   &:hover {
     background-color: #0048b2;
     transition: 300ms;

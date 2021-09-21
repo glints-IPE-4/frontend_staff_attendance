@@ -8,7 +8,6 @@ body {
   padding: 0;
   font-size: 16px;
   font-family: 'inter';
-  background-color: #e5e5e5;
 }
 
 @import 'button';
@@ -16,3 +15,4 @@ body {
 @import 'sidebar';
 @import 'container';
 @import 'dashboard';
+@import 'card';

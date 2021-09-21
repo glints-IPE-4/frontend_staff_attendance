@@ -17,8 +17,8 @@ const RequestOvertime = props => {
           </div>
         </div>
         <div className='button-request'>
-          <div className='button-accept'>Accept</div>
-          <div className='button-reject'>Reject</div>
+          <div className='button rounded accept'>Accept</div>
+          <div className='button rounded reject'>Reject</div>
         </div>
       </div>
     </span>
