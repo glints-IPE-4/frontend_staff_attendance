@@ -1,24 +1,35 @@
+.layout {
+  display: flex;
+  .container-content {
+    width: 100%;
+  }
+}
+
 .sidebar-header {
   display: flex;
-  height: 51px;
-  padding-top: 7px;
-  margin-left: 257px;
-  padding-right: 10px;
+  position: sticky;
+  top: 0;
+  padding: 8px 12px;
   background-color: #ffffff;
   justify-content: space-between;
   align-items: center;
   .date-button {
     display: flex;
     .date {
-      padding-top: 5px;
+      display: flex;
+      align-items: center;
+      font-size: 19px;
+      font-weight: 500;
+      margin-right: 24px;
     }
-    .button-Clock-in {
-      margin-left: 16px;
-      background-color: #1aa053;
-      border-radius: 18px;
-      padding: 5px;
-      color: white;
-      cursor: pointer;
+    .button {
+      &.clock-in {
+        background-color: #1aa053;
+        border-radius: 18px;
+        &:hover {
+          background-color: rgba(26, 160, 83, 0.8);
+        }
+      }
     }
     img {
       cursor: pointer;
@@ -26,6 +37,8 @@
   }
 
   .header-role {
+    display: flex;
+    align-items: center;
     .staff {
       .role-staff {
         color: #8a92a6;
@@ -52,71 +65,78 @@
       padding-left: 10px;
     }
   }
-  .sidebar {
-    display: flex;
-    flex-direction: column;
-    align-items: flex-start;
-    padding: 0px;
-    position: absolute;
-    width: 257px;
-    height: 100%;
-    left: 0px;
-    top: 0px;
-    background: #ffffff;
-    box-shadow: 0px 10px 30px rgba(17, 38, 146, 0.05);
-    .header {
-      .header-item {
-        display: flex;
-        justify-content: space-between;
-        padding-top: 24px;
-        padding-bottom: 16px;
-        .logo {
-          padding-left: 32px;
-        }
-        .user {
-          display: flex;
-        }
-      }
-    }
+}
 
-    .main {
+.sidebar {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  position: sticky;
+  padding: 0px;
+  width: 257px;
+  height: 100vh;
+  left: 0px;
+  top: 0px;
+  background: #ffffff;
+  box-shadow: 0px 10px 30px rgba(17, 38, 146, 0.05);
+  .header {
+    width: 100%;
+    .logo {
       display: flex;
-      margin: 10px 10px;
-      font-size: 16px;
-      list-style-type: none;
-      cursor: pointer;
+      justify-content: center;
+      align-items: center;
+      width: 100%;
+      height: 75px;
+    }
+  }
 
-      span {
-        display: flex;
-        flex-direction: column;
-        padding: 10px;
-        width: 200px;
+  .main {
+    display: flex;
+    margin: 10px 10px;
+    font-size: 16px;
+    list-style-type: none;
+    cursor: pointer;
 
-        :hover {
-          background-color: #3a57e8;
-          color: #ffffff;
-          border-radius: 4px;
+    span {
+      display: flex;
+      flex-direction: column;
+      padding: 10px;
+      width: 200px;
+
+      .selected {
+        background-color: #3a57e8;
+        color: #ffffff;
+        border-radius: 4px;
+        svg {
+          fill: #ffffff;
         }
-        a {
-          text-decoration: none;
+      }
+      :hover {
+        background-color: #3a57e8;
+        color: #ffffff;
+        border-radius: 4px;
+      }
+      a {
+        text-decoration: none;
+        display: flex;
+        font-family: inter;
+        color: #8a92a6;
+        margin-bottom: 10px;
+        svg {
+          fill: #8a92a6;
           display: flex;
-          font-family: inter;
-          color: #8a92a6;
-          img {
-            display: flex;
-            width: 24px;
-            height: 24px;
-            margin-top: 7px;
-          }
+          width: 24px;
+          height: 24px;
+          margin-top: 7px;
         }
       }
     }
+  }
 
-    .divider {
-      width: 100%;
-      height: 1px;
-      border-radius: 1px;
-      background-color: #e9ecef;
-    }
+  .divider {
+    width: 100%;
+    height: 1px;
+    border-radius: 1px;
+    background-color: #e9ecef;
   }
 }

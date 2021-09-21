@@ -1,21 +1,35 @@
-.staff-view {
+.view {
   display: flex;
-  padding: 10px;
   flex-direction: row;
+  padding: 14px;
   flex-wrap: wrap;
   justify-content: space-between;
   .card {
-    background-color: #ffffff;
-    width: 45%;
-    border-radius: 12px;
-    padding: 10px;
-    margin-bottom: 10px;
+    min-width: 40%;
+    flex: 1;
+    height: 250px;
+    margin: 10px;
     .card-title {
       padding-bottom: 10px;
+    }
+    .list-staff-container {
+      overflow-y: scroll;
+      height: calc(100% - 24px);
+      &::-webkit-scrollbar {
+        width: 10px;
+      }
+      &::-webkit-scrollbar-track {
+        background: white;
+      }
+      &::-webkit-scrollbar-thumb {
+        background-color: lightgray;
+        border-radius: 50px;
+      }
     }
     .list-staff {
       display: flex;
       justify-content: space-between;
+
       .list-staff-group {
         display: flex;
         .photo {
@@ -63,26 +77,16 @@
       .button-request {
         display: flex;
         align-items: center;
-        .button-accept {
-          width: 40px;
-          height: 16px;
-          padding: 5px;
+        .button {
+          padding: 4px 8px;
           font-size: 13px;
-          background-color: #1aa053;
-          margin-right: 5px;
-          border-radius: 15px;
-          color: #ffffff;
-          cursor: pointer;
-        }
-        .button-reject {
-          width: 39px;
-          height: 16px;
-          padding: 5px;
-          font-size: 13px;
-          background-color: #c03221;
-          border-radius: 15px;
-          cursor: pointer;
-          color: #ffffff;
+          &.accept {
+            background-color: #1aa053;
+            margin-right: 5px;
+          }
+          &.reject {
+            background-color: #c03221;
+          }
         }
       }
     }
