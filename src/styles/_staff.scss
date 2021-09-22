@@ -1,0 +1,18 @@
+.staff-view {
+  padding: 24px;
+  .card {
+    a {
+      text-decoration: none;
+    }
+    .button {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      line-height: 175%;
+      padding: 8px 24px;
+      width: fit-content;
+      margin-bottom: 40px;
+      text-decoration: none;
+    }
+  }
+}

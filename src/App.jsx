@@ -12,8 +12,8 @@ function App() {
       <Switch>
         <Route path='/login' component={LoginPage} />
         <Route path='/' exact component={Layout(DashboardPage)} />
-        <Route path='/StaffPage' exact component={Layout(StaffPage)} />
-        <Route path='/StaffPage/New' exact component={Layout(AddStaff)} />
+        <Route path='/staff' exact component={Layout(StaffPage)} />
+        <Route path='/staff/new' exact component={Layout(AddStaff)} />
       </Switch>
     </Router>
   );
