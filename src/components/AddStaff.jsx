@@ -4,7 +4,7 @@ import TextField from './TextField';
 
 const initialValues = {
   nip: '',
-  division: '',
+  divisi: '',
   name: '',
   Phone: '',
   Address: '',
@@ -24,10 +24,15 @@ const AddStaff = () => (
         {({ handleSubmit }) => (
           <div>
             <Form className='form'>
-              <TextField name='nip' placeholder='NIP' />
-              <TextField name='division' placeholder='Role' type='division' />
+              <TextField name='nip' placeholder='number' />
+              <TextField name='divisi' placeholder='Role' type='divisi' />
               <TextField name='name' placeholder='name' type='name' />
-              <TextField name='Phone Number' placeholder='Phone Number' x type='Phone Number' />
+              <TextField
+                name='Phone'
+                placeholder='Phone Number'
+                type='tel'
+                pattern='[0-9]{3}-[0-9]{2}-[0-9]{3}'
+              />
               <TextField name='Address' placeholder='Address' type='Address' />
               <TextField
                 name='email'
@@ -35,8 +40,8 @@ const AddStaff = () => (
                 autoComplete='username'
                 type='email'
               />
-              <button type='submit' onClick={handleSubmit}>
-                submit
+              <button className='add-staff-new' type='button' onChange={handleSubmit}>
+                Submit
               </button>
             </Form>
           </div>
