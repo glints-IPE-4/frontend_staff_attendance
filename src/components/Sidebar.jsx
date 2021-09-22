@@ -5,7 +5,7 @@ import { ReactComponent as Users } from '../assets/svg/Users.svg';
 
 const menuItems = [
   { name: 'Dashboard', to: '/', Icon: Category, exact: true },
-  { name: 'Staff', to: '/StaffPage', Icon: Users, exact: false },
+  { name: 'Staff', to: '/staff', Icon: Users, exact: false },
 ];
 
 const Sidebar = () => (

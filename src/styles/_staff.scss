@@ -1,6 +1,9 @@
 .staff-view {
   padding: 24px;
   .card {
+    a {
+      text-decoration: none;
+    }
     .button {
       display: flex;
       justify-content: center;
