@@ -6,10 +6,10 @@ const initialValues = {
   nip: '',
   divisi: '',
   name: '',
-  Phone: '',
-  Address: '',
+  phone: '',
+  address: '',
 };
-const AddStaff = () => (
+const New = () => (
   <div className='add-staff'>
     <div className='add-staff-main'>
       <h4>Add New Staff</h4>
@@ -24,8 +24,8 @@ const AddStaff = () => (
         {({ handleSubmit }) => (
           <div>
             <Form className='form'>
-              <TextField name='nip' placeholder='number' />
-              <TextField name='divisi' placeholder='Role' type='divisi' />
+              <TextField name='nip' placeholder='NIP' type='number' />
+              <TextField name='divisi' placeholder='Role' type='name' />
               <TextField name='name' placeholder='name' type='name' />
               <TextField
                 name='Phone'
@@ -33,8 +33,8 @@ const AddStaff = () => (
                 type='tel'
                 pattern='[0-9]{3}-[0-9]{2}-[0-9]{3}'
               />
-              <TextField name='Address' placeholder='Address' type='Address' />
-              <button className='add-staff-new' type='button' onChange={handleSubmit}>
+              <TextField name='Address' placeholder='Address' type='address' />
+              <button className='add-new-button' type='button' onChange={handleSubmit}>
                 Create
               </button>
             </Form>
@@ -45,4 +45,4 @@ const AddStaff = () => (
   </div>
 );
 
-export default AddStaff;
+export default New;

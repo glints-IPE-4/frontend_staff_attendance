@@ -3,44 +3,45 @@
   .add-staff-main {
     background-color: #ffffff;
     border-radius: 4px;
+
     h4 {
       padding-top: 10px;
       padding-left: 18px;
     }
   }
   .form {
-    display: flex;
-    flex-direction: row;
-    flex-wrap: wrap;
-    padding: 18px;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
     .text-field {
+      width: 100%;
       .input {
-        width: 492px;
+        width: 90%;
         margin-bottom: 32px;
         padding: 8px 16px;
         margin-right: 7px;
-        box-shadow: 0px 10px 13px rgb(17 38 146 / 5%);
-        border-radius: 8px;
+        margin-left: 10px;
+        &:focus {
+          outline: none;
+        }
       }
     }
-  }
-}
-
-.add-staff-new {
-  width: 100%;
-  padding: 0;
-  margin-right: 7px;
-  background-color: #3a57e8;
-  border-radius: 4px;
-  padding: 8px 24px;
-  color: white;
-  border: none;
-  cursor: pointer;
-  &.rounded {
-    border-radius: 100px;
-  }
-  &:hover {
-    background-color: #0048b2;
-    transition: 300ms;
+    .add-new-button {
+      grid-column-start: 1;
+      grid-column-end: 3;
+      background-color: #3a57e8;
+      margin: 10px;
+      border-radius: 4px;
+      padding: 8px 24px;
+      color: white;
+      border: none;
+      cursor: pointer;
+      &.rounded {
+        border-radius: 100px;
+      }
+      &:hover {
+        background-color: #0048b2;
+        transition: 300ms;
+      }
+    }
   }
 }
