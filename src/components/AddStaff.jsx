@@ -34,12 +34,6 @@ const AddStaff = () => (
                 pattern='[0-9]{3}-[0-9]{2}-[0-9]{3}'
               />
               <TextField name='Address' placeholder='Address' type='Address' />
-              <TextField
-                name='email'
-                placeholder='example@web.com'
-                autoComplete='username'
-                type='email'
-              />
               <button className='add-staff-new' type='button' onChange={handleSubmit}>
                 Submit
               </button>
