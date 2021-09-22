@@ -1,3 +1,4 @@
+import Moment from 'react-moment';
 import Frame from '../assets/svg/Frame.svg';
 import Notification from '../assets/svg/Notification.svg';
 import Logout from '../assets/svg/Logout.svg';
@@ -5,7 +6,9 @@ import Logout from '../assets/svg/Logout.svg';
 const TopBar = () => (
   <div className='sidebar-header'>
     <div className='date-button'>
-      <div className='date'>Jan 19, 2021 09:00 AM</div>
+      <div className='date'>
+        <Moment interval={1000} format='MMM Do YYYY, h:mm:ss a' />
+      </div>
       <div className='button clock-in'>Clock In</div>
     </div>
 

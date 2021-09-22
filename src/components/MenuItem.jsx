@@ -18,7 +18,7 @@ const MenuItem = props => {
 MenuItem.propTypes = {
   name: PropTypes.string.isRequired,
   to: PropTypes.string.isRequired,
-  Icon: PropTypes.string.isRequired,
+  Icon: PropTypes.elementType.isRequired,
   exact: PropTypes.bool,
 };
 MenuItem.defaultProps = {

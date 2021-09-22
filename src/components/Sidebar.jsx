@@ -19,7 +19,7 @@ const Sidebar = () => (
         {menuItems.map(menuItem => (
           <MenuItem
             exact={menuItem.exact}
-            key={menuItem.id}
+            key={menuItem.name}
             Icon={menuItem.Icon}
             name={menuItem.name}
             to={menuItem.to}

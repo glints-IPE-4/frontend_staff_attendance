@@ -6,7 +6,7 @@
   justify-content: space-between;
   .card {
     min-width: 40%;
-    flex: 1;
+    flex-grow: 1;
     height: 250px;
     margin: 10px;
     .card-title {
@@ -89,6 +89,11 @@
           }
         }
       }
+    }
+    &.chart {
+      width: 100%;
+      height: auto;
+      align-self: stretch;
     }
   }
 }
