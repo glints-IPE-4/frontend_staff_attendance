@@ -35,7 +35,7 @@ const AddStaff = () => (
               />
               <TextField name='Address' placeholder='Address' type='Address' />
               <button className='add-staff-new' type='button' onChange={handleSubmit}>
-                Submit
+                Create
               </button>
             </Form>
           </div>
