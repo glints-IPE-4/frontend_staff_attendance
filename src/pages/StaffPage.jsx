@@ -6,7 +6,7 @@ import { Link } from 'react-router-dom';
 const ActionCell = ({ value }) => (
   <div className='button-details'>
     <Link to={`staff/${value}`}>
-      <div className='button rounded'>Details</div>{' '}
+      <div className='button rounded'>Details</div>
     </Link>
   </div>
 );
@@ -83,7 +83,6 @@ const StaffPage = () => {
         nik: '57533',
         name: 'test',
         img: 'img',
-
         division: 'divA',
         telp: '093467523953',
       },

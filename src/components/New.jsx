@@ -27,7 +27,7 @@ const New = () => (
             <Form className='form'>
               <TextField name='nip' placeholder='NIP' type='number' />
               <TextField name='nik' placeholder='NIK' type='number' />
-              <TextField name='divisi' placeholder='Role' type='name' />
+              <TextField name='divisi' placeholder='Division' type='name' />
               <TextField name='name' placeholder='name' type='name' />
               <TextField
                 name='Phone'
