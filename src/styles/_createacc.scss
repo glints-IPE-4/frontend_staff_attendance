@@ -3,5 +3,59 @@
   .create-view-main {
     background-color: #ffffff;
     border-radius: 12px;
+    h4 {
+      padding-top: 10px;
+      padding-left: 18px;
+    }
+
+    .form {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      padding-left: 10px;
+      padding-right: 10px;
+      .text-field {
+        display: flex;
+        flex-direction: column;
+        margin: 10px;
+        font-size: 14px;
+        width: 100%;
+
+        .error-message {
+          color: #d73a4a;
+          font-size: 12px;
+          padding: 0 0 4px 16px;
+        }
+        .input {
+          border: 1px solid rgba(138, 146, 166, 1);
+          border-radius: 4px;
+          padding: 10px 16px;
+          transition: 0.3s;
+          margin-top: 8px;
+
+          &:focus {
+            outline: none;
+          }
+        }
+      }
+      .add-new-button {
+        grid-column-start: 1;
+        grid-column-end: 3;
+        background-color: #3a57e8;
+        margin: 10px;
+        border-radius: 4px;
+        padding: 8px 24px;
+        color: white;
+        border: none;
+        cursor: pointer;
+        &.rounded {
+          border-radius: 100px;
+        }
+        &:hover {
+          background-color: #0048b2;
+          transition: 300ms;
+        }
+      }
+    }
   }
 }

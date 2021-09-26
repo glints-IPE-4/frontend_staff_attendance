@@ -9,7 +9,7 @@ const initialValues = {
   confirmPassword: '',
 };
 const CreateForm = () => (
-  <Form className='form' x>
+  <Form className='form'>
     <TextField name='email' autoComplete='username' placeholder='Example@mail.co' type='email' />
     <TextField name='password' autoComplete='new-password' placeholder='password' type='password' />
     <TextField
@@ -18,7 +18,9 @@ const CreateForm = () => (
       placeholder='Confirm Password'
       type='password'
     />
-    <button type='submit'>Create Account</button>
+    <button className='add-new-button' type='submit'>
+      Create Account
+    </button>
   </Form>
 );
 
