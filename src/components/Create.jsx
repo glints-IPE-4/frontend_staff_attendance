@@ -35,7 +35,7 @@ const CreateForm = () => (
 
 const validationSchema = yup.object().shape({
   nip: yup
-    .number()
+    .string()
     .min(4, 'NIP must be more than 4 digits')
     .typeError('NIP must number')
     .required('NIP is required'),
