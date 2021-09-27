@@ -5,50 +5,33 @@ import { Link } from 'react-router-dom';
 
 const ActionCell = ({ value }) => (
   <div className='button-details'>
-    <Link to={`staff/${value}`}>
-      <div className='button rounded'>Details</div>
+    <Link to={`account/edit/${value}`}>
+      <div className='edit-button rounded'>Edit</div>
+    </Link>
+    <Link to={`account/delete/${value}`}>
+      <div className='delete-button rounded'>Delete</div>
     </Link>
   </div>
 );
 ActionCell.propTypes = {
   value: PropTypes.string.isRequired,
 };
-const ImgCell = ({ value }) => (
-  <img src={`https://avatars.dicebear.com/api/big-smile/${value}.svg?size=50`} alt='value' />
-);
-ImgCell.propTypes = {
-  value: PropTypes.string.isRequired,
-};
-const StaffPage = () => {
+
+const AccountPage = () => {
   const columns = React.useMemo(
     () => [
       {
-        Header: 'Image',
-        accessor: 'img',
-        Cell: ImgCell,
+        Header: 'Role',
+        accessor: 'role',
       },
       {
-        Header: 'NIP',
+        Header: 'Nip',
         accessor: 'nip',
       },
       {
-        Header: 'NIK',
-        accessor: 'nik',
+        Header: 'Email',
+        accessor: 'email',
       },
-      {
-        Header: 'Name',
-        accessor: 'name',
-      },
-      {
-        Header: 'Division',
-        accessor: 'division',
-      },
-
-      {
-        Header: 'Telp',
-        accessor: 'telp',
-      },
-
       {
         Header: 'Action',
         accessor: 'action',
@@ -60,49 +43,25 @@ const StaffPage = () => {
   const data = React.useMemo(
     () => [
       {
-        nip: '5433',
-        nik: '55433',
-        action: '5433',
-        name: 'aldi',
-        img: 'aldi',
-        division: 'divA',
-        telp: '093467548953',
+        email: 'blakepaw@yahoo.do',
+        role: 'Admin',
+        nip: '1001',
+        action: 'blakepaw@yahoo.do',
+        name: 'Ferry Anderson',
       },
       {
-        nip: '5413',
-        action: '5433',
-        nik: '5413',
-        name: 'afan',
-        img: 'afan',
-        division: 'divB',
-        telp: '093467646953',
+        email: 'cheatengine@rocketmail.do',
+        role: 'HR',
+        nip: '1002',
+        action: 'blakepaw@yahoo.do',
+        name: 'Iwan Steward',
       },
       {
-        nip: '57533',
-        action: '5433',
-        nik: '57533',
-        name: 'test',
-        img: 'img',
-        division: 'divA',
-        telp: '093467523953',
-      },
-      {
-        nip: '5433',
-        nik: '5433',
-        action: '5433',
-        name: 'ares',
-        img: 'ares',
-        division: 'divC',
-        telp: '09348658953',
-      },
-      {
-        nip: '5433',
-        nik: '5433',
-        action: '5433',
-        name: 'ares',
-        img: 'ares',
-        division: 'divC',
-        telp: '09348658953',
+        email: 'blakepaw@breakdown.do',
+        role: 'HR',
+        nip: '1003',
+        action: 'blakepaw@yahoo.do',
+        name: 'blaem anderson',
       },
     ],
     [],
@@ -121,17 +80,17 @@ const StaffPage = () => {
   const showSortIcon = column => {
     if (column.isSorted) {
       if (column.isSortedDesc) {
-        return ' 🔽';
+        return '🔽';
       }
-      return ' 🔼';
+      return '🔼';
     }
     return '';
   };
   return (
     <div className='staff-view'>
       <div className='card '>
-        <Link to='staff/new'>
-          <div className='button rounded'>Add New Staff</div>
+        <Link to='account/create'>
+          <div className='button rounded'>Create Account</div>
         </Link>
         <table {...getTableProps()} className='table'>
           <thead>
@@ -166,4 +125,4 @@ const StaffPage = () => {
   );
 };
 
-export default StaffPage;
+export default AccountPage;
