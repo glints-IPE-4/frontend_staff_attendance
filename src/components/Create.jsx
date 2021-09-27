@@ -4,27 +4,41 @@ import * as yup from 'yup';
 import TextField from './TextField';
 
 const initialValues = {
+  nip: '',
   email: '',
   password: '',
   confirmPassword: '',
 };
 const CreateForm = () => (
-  <Form className='form'>
-    <TextField name='email' autoComplete='username' placeholder='Example@mail.co' type='email' />
-    <TextField name='password' autoComplete='new-password' placeholder='password' type='password' />
-    <TextField
-      name='confirmPassword'
-      autoComplete='new-password'
-      placeholder='Confirm Password'
-      type='password'
-    />
-    <button className='add-new-button' type='submit'>
-      Create Account
-    </button>
-  </Form>
+  <div>
+    <Form className='form'>
+      <TextField name='nip' autoComplete='nip' placeholder='NIP' type='number' />
+      <TextField name='email' autoComplete='username' placeholder='Example@mail.co' type='email' />
+      <TextField
+        name='password'
+        autoComplete='new-password'
+        placeholder='password'
+        type='password'
+      />
+      <TextField
+        name='confirmPassword'
+        autoComplete='new-password'
+        placeholder='Confirm Password'
+        type='password'
+      />
+      <button className='add-new-button' type='submit'>
+        Create Account
+      </button>
+    </Form>
+  </div>
 );
 
 const validationSchema = yup.object().shape({
+  nip: yup
+    .number()
+    .min(4, 'NIP must be more than 4 digits')
+    .typeError('NIP must number')
+    .required('NIP is required'),
   email: yup.string().email('must a valid email').required('Email is Required'),
   password: yup
     .string()
@@ -42,7 +56,15 @@ const Create = () => (
   <div className='create-view'>
     <div className='create-view-main'>
       <h4>Create Account</h4>
-      <Formik initialValues={initialValues} validationSchema={validationSchema}>
+      <Formik
+        initialValues={initialValues}
+        validationSchema={validationSchema}
+        onSubmit={
+          // Not Implemented yet
+          // eslint-disable-next-line no-console
+          val => console.log(val)
+        }
+      >
         <CreateForm />
       </Formik>
     </div>

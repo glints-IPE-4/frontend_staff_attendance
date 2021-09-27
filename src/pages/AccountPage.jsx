@@ -6,10 +6,10 @@ import { Link } from 'react-router-dom';
 const ActionCell = ({ value }) => (
   <div className='button-details'>
     <Link to={`account/edit/${value}`}>
-      <div className='button rounded'>Edit</div>
+      <div className='edit-button rounded'>Edit</div>
     </Link>
     <Link to={`account/delete/${value}`}>
-      <div className='button rounded'>Delete</div>
+      <div className='delete-button rounded'>Delete</div>
     </Link>
   </div>
 );
@@ -23,6 +23,10 @@ const AccountPage = () => {
       {
         Header: 'Role',
         accessor: 'role',
+      },
+      {
+        Header: 'Nip',
+        accessor: 'nip',
       },
       {
         Header: 'Email',
@@ -41,18 +45,21 @@ const AccountPage = () => {
       {
         email: 'blakepaw@yahoo.do',
         role: 'Admin',
+        nip: '1001',
         action: 'blakepaw@yahoo.do',
         name: 'Ferry Anderson',
       },
       {
         email: 'cheatengine@rocketmail.do',
         role: 'HR',
+        nip: '1002',
         action: 'blakepaw@yahoo.do',
         name: 'Iwan Steward',
       },
       {
         email: 'blakepaw@breakdown.do',
         role: 'HR',
+        nip: '1003',
         action: 'blakepaw@yahoo.do',
         name: 'blaem anderson',
       },

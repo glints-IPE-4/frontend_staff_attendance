@@ -25,6 +25,8 @@
           color: #d73a4a;
           font-size: 12px;
           padding: 0 0 4px 16px;
+          margin-bottom: 0px;
+          margin-top: 0px;
         }
         .input {
           border: 1px solid rgba(138, 146, 166, 1);
@@ -36,24 +38,6 @@
           &:focus {
             outline: none;
           }
-        }
-      }
-      .add-new-button {
-        grid-column-start: 1;
-        grid-column-end: 3;
-        background-color: #3a57e8;
-        margin: 10px;
-        border-radius: 4px;
-        padding: 8px 24px;
-        color: white;
-        border: none;
-        cursor: pointer;
-        &.rounded {
-          border-radius: 100px;
-        }
-        &:hover {
-          background-color: #0048b2;
-          transition: 300ms;
         }
       }
     }
