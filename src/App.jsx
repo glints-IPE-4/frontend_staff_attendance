@@ -5,6 +5,7 @@ import StaffPage from './pages/StaffPage';
 import LoginPage from './pages/LoginPage';
 import AddStaff from './components/New';
 import './styles/index.scss';
+import StaffDetails from './pages/StaffDetails';
 
 function App() {
   return (
@@ -14,6 +15,7 @@ function App() {
         <Route path='/' exact component={Layout(DashboardPage)} />
         <Route path='/staff' exact component={Layout(StaffPage)} />
         <Route path='/staff/new' exact component={Layout(AddStaff)} />
+        <Route path='/staff/:id' exact component={Layout(StaffDetails)} />
       </Switch>
     </Router>
   );

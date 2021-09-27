@@ -16,3 +16,37 @@
     }
   }
 }
+.staff-details {
+  padding: 24px;
+  .card-head {
+    display: flex;
+    padding: 40px;
+    align-items: center;
+
+    .name {
+      font-size: 28px;
+      font-weight: 500;
+      margin: 0;
+    }
+    .role {
+      margin: 0;
+    }
+
+    .card-head-img {
+      border-radius: 50%;
+      width: 120px;
+      margin-right: 20px;
+    }
+  }
+  .card-body {
+    padding: 20px;
+    .data-group {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      border-bottom: 1px solid #8a92a6;
+      color: #8a92a6;
+      font-size: 20px;
+      margin-bottom: 20px;
+    }
+  }
+}
