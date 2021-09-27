@@ -40,6 +40,24 @@
           }
         }
       }
+      .add-new-button {
+        grid-column-start: 1;
+        grid-column-end: 3;
+        background-color: #3a57e8;
+        margin: 10px;
+        border-radius: 4px;
+        padding: 8px 24px;
+        color: white;
+        border: none;
+        cursor: pointer;
+        margin-bottom: 10px;
+        width: 100%;
+
+        &:hover {
+          background-color: #0048b2;
+          transition: 300ms;
+        }
+      }
     }
   }
 }

@@ -26,7 +26,7 @@ const CreateForm = () => (
         placeholder='Confirm Password'
         type='password'
       />
-      <button className='add-new-button' type='submit'>
+      <button className='add-new-button rounded' type='submit'>
         Create Account
       </button>
     </Form>
