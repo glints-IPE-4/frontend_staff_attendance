@@ -1,7 +1,9 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import { useSortBy, useTable } from 'react-table';
 import PropTypes from 'prop-types';
 import { Link } from 'react-router-dom';
+import { useRequest } from 'ahooks';
+import useAuth from '../providers/auth/context';
 
 const ActionCell = ({ value }) => (
   <div className='button-details'>
@@ -20,11 +22,37 @@ ImgCell.propTypes = {
   value: PropTypes.string.isRequired,
 };
 const StaffPage = () => {
+  const { reqHeader } = useAuth();
+  const [listStaff, setListStaff] = useState([]);
+  const {
+    data: dataUser,
+    run: getStaff,
+    loading,
+  } = useRequest(
+    () => ({
+      url: 'http://staffattendanceipe4.herokuapp.com/auth/api/v1/staff',
+      method: 'get',
+      headers: reqHeader,
+    }),
+    { manual: true },
+  );
+
+  useEffect(() => {
+    if (reqHeader.Authorization !== '') {
+      getStaff();
+    }
+  }, [reqHeader, getStaff]);
+  useEffect(() => {
+    if (dataUser) {
+      setListStaff(dataUser.message.map(user => ({ ...user, action: String(user.nip) })));
+    }
+  }, [dataUser]);
+
   const columns = React.useMemo(
     () => [
       {
         Header: 'Image',
-        accessor: 'img',
+        accessor: 'photo',
         Cell: ImgCell,
       },
       {
@@ -45,8 +73,8 @@ const StaffPage = () => {
       },
 
       {
-        Header: 'Telp',
-        accessor: 'telp',
+        Header: 'Phone Number',
+        accessor: 'phone',
       },
 
       {
@@ -57,67 +85,6 @@ const StaffPage = () => {
     ],
     [],
   );
-  const data = React.useMemo(
-    () => [
-      {
-        nip: '5433',
-        nik: '55433',
-        action: '5433',
-        name: 'aldi',
-        img: 'aldi',
-        division: 'divA',
-        telp: '093467548953',
-      },
-      {
-        nip: '5413',
-        action: '5433',
-        nik: '5413',
-        name: 'afan',
-        img: 'afan',
-        division: 'divB',
-        telp: '093467646953',
-      },
-      {
-        nip: '57533',
-        action: '5433',
-        nik: '57533',
-        name: 'test',
-        img: 'img',
-        division: 'divA',
-        telp: '093467523953',
-      },
-      {
-        nip: '5433',
-        nik: '5433',
-        action: '5433',
-        name: 'ares',
-        img: 'ares',
-        division: 'divC',
-        telp: '09348658953',
-      },
-      {
-        nip: '5433',
-        nik: '5433',
-        action: '5433',
-        name: 'ares',
-        img: 'ares',
-        division: 'divC',
-        telp: '09348658953',
-      },
-    ],
-    [],
-  );
-
-  const tableInstance = useTable(
-    {
-      columns,
-      data,
-    },
-    useSortBy,
-  );
-  const { getTableProps, getTableBodyProps, headerGroups, rows, prepareRow } = tableInstance;
-
-  const firstPageRows = rows.slice(0, 20);
   const showSortIcon = column => {
     if (column.isSorted) {
       if (column.isSortedDesc) {
@@ -127,6 +94,15 @@ const StaffPage = () => {
     }
     return '';
   };
+  const tableInstance = useTable(
+    {
+      columns,
+      data: listStaff,
+    },
+    useSortBy,
+  );
+  const { getTableProps, getTableBodyProps, headerGroups, rows, prepareRow } = tableInstance;
+
   return (
     <div className='staff-view'>
       <div className='card '>
@@ -146,20 +122,24 @@ const StaffPage = () => {
               </tr>
             ))}
           </thead>
-          <tbody {...getTableBodyProps()}>
-            {firstPageRows.map(row => {
-              prepareRow(row);
-              return (
-                <tr {...row.getRowProps()}>
-                  {row.cells.map(cell => (
-                    <td {...cell.getCellProps()} className={cell.name}>
-                      {cell.render('Cell')}
-                    </td>
-                  ))}
-                </tr>
-              );
-            })}
-          </tbody>
+          {loading ? (
+            <div>Loading...</div>
+          ) : (
+            <tbody {...getTableBodyProps()}>
+              {rows.map(row => {
+                prepareRow(row);
+                return (
+                  <tr {...row.getRowProps()}>
+                    {row.cells.map(cell => (
+                      <td {...cell.getCellProps()} className={cell.name}>
+                        {cell.render('Cell')}
+                      </td>
+                    ))}
+                  </tr>
+                );
+              })}
+            </tbody>
+          )}
         </table>
       </div>
     </div>
