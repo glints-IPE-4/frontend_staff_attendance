@@ -6,7 +6,6 @@ import SetOfficeLocation from '../components/setting/SetOfficeLocation';
 
 const OfficePage = () => (
   <div className='office'>
-    <h3>Office Setting</h3>
     <SettingWorkTime />
     <SettingOvertime />
     <SettingDayOff />

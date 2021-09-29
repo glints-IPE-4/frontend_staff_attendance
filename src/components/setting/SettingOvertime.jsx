@@ -8,25 +8,23 @@ const SettingOvertime = () => {
   const maxTime = new Date('01/01/2021 09:00 PM');
 
   return (
-    <div>
-      <div className='work-time'>
-        <div>Work Set Overtimes</div>
-        <div>
-          <TimePickerComponent
-            value={timeValueStart}
-            min={minTime}
-            max={maxTime}
-            placeholder='Select a set Start Overtime'
-          />
-        </div>
-        <div>
-          <TimePickerComponent
-            value={timeValueEnd}
-            min={minTime}
-            max={maxTime}
-            placeholder='Select a set End Overtime'
-          />
-        </div>
+    <div className='card'>
+      <div>Work Set Overtimes</div>
+      <div>
+        <TimePickerComponent
+          value={timeValueStart}
+          min={minTime}
+          max={maxTime}
+          placeholder='Select a set Start Overtime'
+        />
+      </div>
+      <div>
+        <TimePickerComponent
+          value={timeValueEnd}
+          min={minTime}
+          max={maxTime}
+          placeholder='Select a set End Overtime'
+        />
       </div>
     </div>
   );

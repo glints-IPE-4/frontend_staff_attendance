@@ -7,8 +7,8 @@ const SettingWorkTime = () => {
   const minTime = new Date('01/01/2021 08:00 AM');
   const maxTime = new Date('01/01/2021 05:00 PM');
   return (
-    <div className='work-time'>
-      <div>Work Set Time</div>
+    <div className='card'>
+      <div className='card-tilte'>Work Set Time</div>
       <div>
         <TimePickerComponent
           value={timeValueStart}
