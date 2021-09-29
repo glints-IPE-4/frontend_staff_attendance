@@ -1,0 +1,9 @@
+.alert {
+  padding: 10px;
+  border-radius: 4px;
+  color: white;
+  width: 95%;
+  &.error {
+    background-color: #c03221;
+  }
+}
