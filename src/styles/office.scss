@@ -5,16 +5,23 @@
   flex-wrap: wrap;
   justify-content: space-between;
   .card {
-    min-width: 40%;
+    min-width: 27%;
     flex-grow: 1;
     height: 100px;
     margin: 10px;
     .card-title {
       padding-bottom: 10px;
     }
+    input {
+      height: 20px;
+      width: 64%;
+    }
   }
   .leaflet-container {
-    width: 100%;
-    height: 70vh;
+    width: 99%;
+    height: 59vh;
+    span {
+      cursor: pointer;
+    }
   }
 }

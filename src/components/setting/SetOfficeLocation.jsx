@@ -25,13 +25,20 @@ function DraggableMarker() {
     setDraggable(d => !d);
   }, []);
   return (
-    <Marker draggable={draggable} eventHandlers={eventHandlers} position={position} ref={markerRef}>
-      <Popup minWidth={90}>
-        <span onClick={toggleDraggable} aria-hidden='true'>
-          {draggable ? 'Marker is draggable' : 'Click here to make marker draggable'}
-        </span>
-      </Popup>
-    </Marker>
+    <div className='card'>
+      <Marker
+        draggable={draggable}
+        eventHandlers={eventHandlers}
+        position={position}
+        ref={markerRef}
+      >
+        <Popup minWidth={90}>
+          <span onClick={toggleDraggable} aria-hidden='true'>
+            {draggable ? 'Marker is draggable' : 'Click here to setting office location'}
+          </span>
+        </Popup>
+      </Marker>
+    </div>
   );
 }
 

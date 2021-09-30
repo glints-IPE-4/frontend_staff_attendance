@@ -9,7 +9,7 @@ const SettingOvertime = () => {
 
   return (
     <div className='card'>
-      <div>Work Set Overtimes</div>
+      <div className='card-tilte'>Work Set Overtimes</div>
       <div>
         <TimePickerComponent
           value={timeValueStart}
