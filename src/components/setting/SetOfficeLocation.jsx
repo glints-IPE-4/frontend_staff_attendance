@@ -1,4 +1,4 @@
-import React, { useCallback, useMemo, useRef, useState } from 'react';
+import React, { useRef, useMemo, useState, useCallback } from 'react';
 import { MapContainer, Marker, Popup, TileLayer } from 'react-leaflet';
 
 const center = {
@@ -24,12 +24,10 @@ function DraggableMarker() {
   const toggleDraggable = useCallback(() => {
     setDraggable(d => !d);
   }, []);
-
   return (
     <Marker draggable={draggable} eventHandlers={eventHandlers} position={position} ref={markerRef}>
       <Popup minWidth={90}>
-        <span>
-          onClick={toggleDraggable}
+        <span onClick={toggleDraggable} aria-hidden='true'>
           {draggable ? 'Marker is draggable' : 'Click here to make marker draggable'}
         </span>
       </Popup>
