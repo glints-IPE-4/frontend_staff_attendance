@@ -1,10 +1,16 @@
-import React from 'react';
+/* eslint-disable no-unused-vars */
+import React, { useEffect, useState } from 'react';
 import { useSortBy, useTable } from 'react-table';
 import PropTypes from 'prop-types';
 import { Link } from 'react-router-dom';
+import { useRequest } from 'ahooks';
+import useAuth from '../providers/auth/context';
 
 const ActionCell = ({ value }) => (
   <div className='button-details'>
+    <Link to={`account/${value}`}>
+      <div className='edit-button rounded'>Details</div>
+    </Link>
     <Link to={`account/edit/${value}`}>
       <div className='edit-button rounded'>Edit</div>
     </Link>
@@ -18,6 +24,32 @@ ActionCell.propTypes = {
 };
 
 const AccountPage = () => {
+  const { reqHeader } = useAuth();
+  const [listAccount, setListAccount] = useState([]);
+  const {
+    data: dataAccount,
+    run: getAccount,
+    loading,
+  } = useRequest(
+    () => ({
+      url: 'http://staffattendanceipe4.herokuapp.com/auth/api/v1/account',
+      method: 'get',
+      headers: reqHeader,
+    }),
+    { manual: true },
+  );
+  useEffect(() => {
+    if (reqHeader.Authorization !== '') {
+      getAccount();
+    }
+  }, [reqHeader, getAccount]);
+  useEffect(() => {
+    if (dataAccount) {
+      setListAccount(
+        dataAccount.message.map(account => ({ ...account, action: String(account.email) })),
+      );
+    }
+  }, [dataAccount]);
   const columns = React.useMemo(
     () => [
       {
@@ -26,11 +58,15 @@ const AccountPage = () => {
       },
       {
         Header: 'Nip',
-        accessor: 'nip',
+        accessor: 'staff_nip',
       },
       {
         Header: 'Email',
         accessor: 'email',
+      },
+      {
+        Header: 'Active',
+        accessor: 'is_active',
       },
       {
         Header: 'Action',
@@ -40,43 +76,16 @@ const AccountPage = () => {
     ],
     [],
   );
-  const data = React.useMemo(
-    () => [
-      {
-        email: 'blakepaw@yahoo.do',
-        role: 'Admin',
-        nip: '1001',
-        action: 'blakepaw@yahoo.do',
-        name: 'Ferry Anderson',
-      },
-      {
-        email: 'cheatengine@rocketmail.do',
-        role: 'HR',
-        nip: '1002',
-        action: 'blakepaw@yahoo.do',
-        name: 'Iwan Steward',
-      },
-      {
-        email: 'blakepaw@breakdown.do',
-        role: 'HR',
-        nip: '1003',
-        action: 'blakepaw@yahoo.do',
-        name: 'blaem anderson',
-      },
-    ],
-    [],
-  );
 
   const tableInstance = useTable(
     {
       columns,
-      data,
+      data: listAccount,
     },
     useSortBy,
   );
   const { getTableProps, getTableBodyProps, headerGroups, rows, prepareRow } = tableInstance;
 
-  const firstPageRows = rows.slice(0, 20);
   const showSortIcon = column => {
     if (column.isSorted) {
       if (column.isSortedDesc) {
@@ -105,20 +114,28 @@ const AccountPage = () => {
               </tr>
             ))}
           </thead>
-          <tbody {...getTableBodyProps()}>
-            {firstPageRows.map(row => {
-              prepareRow(row);
-              return (
-                <tr {...row.getRowProps()}>
-                  {row.cells.map(cell => (
-                    <td {...cell.getCellProps()} className={cell.name}>
-                      {cell.render('Cell')}
-                    </td>
-                  ))}
-                </tr>
-              );
-            })}
-          </tbody>
+          {loading ? (
+            <tbody>
+              <tr>
+                <td>Loading...</td>
+              </tr>
+            </tbody>
+          ) : (
+            <tbody {...getTableBodyProps()}>
+              {rows.map(row => {
+                prepareRow(row);
+                return (
+                  <tr {...row.getRowProps()}>
+                    {row.cells.map(cell => (
+                      <td {...cell.getCellProps()} className={cell.name}>
+                        {cell.render('Cell')}
+                      </td>
+                    ))}
+                  </tr>
+                );
+              })}
+            </tbody>
+          )}
         </table>
       </div>
     </div>

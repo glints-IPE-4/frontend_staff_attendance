@@ -10,6 +10,7 @@ import './styles/index.scss';
 import StaffDetails from './pages/StaffDetails';
 import { AuthProvider } from './providers/auth/context';
 import PrivateRoute from './components/PrivateRoute';
+import AccountDetails from './pages/AccountDetails';
 
 function App() {
   return (
@@ -22,6 +23,7 @@ function App() {
           <PrivateRoute path='/staff/new' exact component={Layout(AddStaff)} />
           <PrivateRoute path='/staff/:id' exact component={Layout(StaffDetails)} />
           <PrivateRoute path='/account' exact component={Layout(AccountPage)} />
+          <PrivateRoute path='/account/:email' exact component={Layout(AccountDetails)} />
           <PrivateRoute path='/account/create' exact component={Layout(CreateAccount)} />
         </Switch>
       </AuthProvider>
