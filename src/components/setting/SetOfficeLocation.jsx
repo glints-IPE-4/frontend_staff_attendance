@@ -2,9 +2,10 @@ import React, { useRef, useMemo, useState, useCallback } from 'react';
 import { MapContainer, Marker, Popup, TileLayer } from 'react-leaflet';
 
 const center = {
-  lat: 51.505,
-  lng: -0.09,
+  lat: -6.271301641287552,
+  lng: 106.79733939731577,
 };
+// -6.271301641287552, 106.79733939731577
 
 function DraggableMarker() {
   const [draggable, setDraggable] = useState(false);
@@ -34,7 +35,7 @@ function DraggableMarker() {
       >
         <Popup minWidth={90}>
           <span onClick={toggleDraggable} aria-hidden='true'>
-            {draggable ? 'Marker is draggable' : 'Click here to setting office location'}
+            {draggable ? 'move marker to office location' : 'Click here to setting office location'}
           </span>
         </Popup>
       </Marker>
