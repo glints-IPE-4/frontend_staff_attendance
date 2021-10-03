@@ -1,5 +1,4 @@
 import React, { useState } from 'react';
-import moment from 'moment';
 import { TimePicker } from 'antd';
 
 const SettingWorkTime = () => {
@@ -16,16 +15,14 @@ const SettingWorkTime = () => {
     <div className='card'>
       <div className='card-title'>Setting Office Time</div>
       <TimePicker
-        placeholder='Select Clock in'
+        placeholder='Select a time clock in'
         onChange={onChangeStart}
-        defaultValue={moment('08:00', format)}
         value={startWork}
         format={format}
       />
       <TimePicker
-        placeholder='Select Clock Out'
+        placeholder='Select a time Clock Out'
         onChange={onChangeEnd}
-        defaultValue={moment('17:00', format)}
         value={endWork}
         format={format}
       />

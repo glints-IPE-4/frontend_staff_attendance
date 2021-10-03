@@ -1,6 +1,5 @@
 import React, { useState } from 'react';
 import { TimePicker } from 'antd';
-import moment from 'moment';
 
 function SettingOvertime() {
   const [startOvertime, setStartOvertime] = useState();
@@ -16,16 +15,14 @@ function SettingOvertime() {
     <div className='card'>
       <div className='card-title'>setting Overtime</div>
       <TimePicker
-        placeholder='Select Clock in'
+        placeholder='Select a time Clock in'
         onChange={onChangeStart}
-        defaultValue={moment('19:00', format)}
         value={startOvertime}
         format={format}
       />
       <TimePicker
-        placeholder='Select Clock Out'
+        placeholder='Select a time Clock Out'
         onChange={onChangeEnd}
-        defaultValue={moment('21:00', format)}
         value={endOvertime}
         format={format}
       />
