@@ -1,18 +1,28 @@
 import Moment from 'react-moment';
+import { geolocated, geoPropTypes } from 'react-geolocated';
 import Frame from '../assets/svg/Frame.svg';
 import Notification from '../assets/svg/Notification.svg';
 import Logout from '../assets/svg/Logout.svg';
 import useAuth from '../providers/auth/context';
+import ClockInButton from './ClockInButton';
 
-const TopBar = () => {
+const TopBar = ({ isGeolocationAvailable, isGeolocationEnabled, coords, positionError }) => {
   const { auth, logout } = useAuth();
+
+  const checkButton = () => {
+    if (!isGeolocationAvailable) return <div>Your browser does not support Geolocation</div>;
+    if (!isGeolocationEnabled) return <div>Geolocation is not enabled</div>;
+    if (positionError) return <div>Something went wrong</div>;
+    if (coords) return <ClockInButton coords={coords} />;
+    return 'Error';
+  };
   return (
     <div className='sidebar-header'>
       <div className='date-button'>
         <div className='date'>
           <Moment interval={1000} format='MMM Do YYYY, h:mm:ss a' />
         </div>
-        <div className='button clock-in'>Clock In</div>
+        {checkButton()}
       </div>
 
       <div className='header-role'>
@@ -31,5 +41,16 @@ const TopBar = () => {
     </div>
   );
 };
+TopBar.propTypes = {
+  ...geoPropTypes,
+};
 
-export default TopBar;
+const GeoTopBar = geolocated({
+  positionOptions: {
+    enableHighAccuracy: true,
+  },
+  watchPosition: true,
+  userDecisionTimeout: 5000,
+})(TopBar);
+
+export default GeoTopBar;

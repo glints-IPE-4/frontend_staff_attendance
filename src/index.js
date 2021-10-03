@@ -1,11 +1,18 @@
 /* eslint-disable react/jsx-filename-extension */
 import React from 'react';
 import ReactDOM from 'react-dom';
+import { positions, Provider } from 'react-alert';
+import AlertMUITemplate from 'react-alert-template-mui';
 import App from './App';
 
+const options = {
+  position: positions.MIDDLE,
+};
 ReactDOM.render(
   <React.StrictMode>
-    <App />
+    <Provider template={AlertMUITemplate} {...options}>
+      <App />
+    </Provider>
   </React.StrictMode>,
   document.getElementById('root'),
 );
