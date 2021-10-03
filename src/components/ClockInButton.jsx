@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { useRequest } from 'ahooks';
+import axios from 'axios';
 import { useAlert } from 'react-alert';
 import { geoPropTypes } from 'react-geolocated';
 import useAuth from '../providers/auth/context';
@@ -51,6 +52,8 @@ const getAPI = statuses => {
 const ClockInButton = ({ coords }) => {
   const { reqHeader } = useAuth();
   const [status, setstatus] = useState();
+  const [loadAtt, setLoadAtt] = useState(false);
+
   const alert = useAlert();
   const { loading, run } = useRequest(
     () => ({
@@ -67,35 +70,32 @@ const ClockInButton = ({ coords }) => {
     }
   }, [reqHeader, run]);
 
-  const { loading: loadAtt, run: runAtt } = useRequest(
-    () => ({
-      url: `http://staffattendanceipe4.herokuapp.com/auth/api/v1/${getAPI(status)}`,
-      method: 'post',
-      headers: reqHeader,
-      body: JSON.stringify({
+  const runAtt = () =>
+    axios.post(
+      `http://staffattendanceipe4.herokuapp.com/auth/api/v1/${getAPI(status)}`,
+      {
         latitude: coords.latitude,
         longitude: coords.longitude,
-      }),
-    }),
-    {
-      manual: true,
-      onSuccess: datas => {
-        console.log('data', datas);
-        alert.show(datas.message);
       },
-      onError: datas => {
-        console.log('data', datas);
-        alert.show(datas.message);
-      },
-    },
-  );
-
+      { headers: reqHeader },
+    );
   return (
     <button
       type='button'
       disabled={loading || loadAtt}
       className='button clock-in'
-      onClick={() => runAtt()}
+      onClick={async () => {
+        try {
+          setLoadAtt(true);
+          const res = await runAtt();
+          alert.error(res.data.message);
+          setLoadAtt(false);
+        } catch (error) {
+          setLoadAtt(false);
+
+          alert.error(error.response.data.message);
+        }
+      }}
     >
       {loading || loadAtt ? 'Loading...' : getStatus(status)}
     </button>

@@ -1,0 +1,15 @@
+.nip-list {
+  padding: 24px;
+  .title {
+    font-size: 24px;
+    margin-bottom: 24px;
+  }
+  .nip-list-item {
+    padding-bottom: 10px;
+    display: flex;
+    align-items: center;
+    .button {
+      margin-left: 24px;
+    }
+  }
+}

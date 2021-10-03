@@ -1,14 +1,9 @@
 import React from 'react';
 import { Form, Formik } from 'formik';
 import * as yup from 'yup';
+import { useParams } from 'react-router-dom';
 import TextField from './TextField';
 
-const initialValues = {
-  nip: '',
-  email: '',
-  password: '',
-  confirmPassword: '',
-};
 const CreateForm = () => (
   <div>
     <Form className='form'>
@@ -52,23 +47,33 @@ const validationSchema = yup.object().shape({
   confirmPassword: yup.string().oneOf([yup.ref('password'), null], 'Passwords must match'),
 });
 
-const Create = () => (
-  <div className='create-view'>
-    <div className='create-view-main'>
-      <h4>Create Account</h4>
-      <Formik
-        initialValues={initialValues}
-        validationSchema={validationSchema}
-        onSubmit={
-          // Not Implemented yet
-          // eslint-disable-next-line no-console
-          val => console.log(val)
-        }
-      >
-        <CreateForm />
-      </Formik>
+const Create = () => {
+  const { nip } = useParams();
+  const initialValues = {
+    nip,
+    email: '',
+    password: '',
+    confirmPassword: '',
+  };
+
+  return (
+    <div className='create-view'>
+      <div className='create-view-main'>
+        <h4>Create Account</h4>
+        <Formik
+          initialValues={initialValues}
+          validationSchema={validationSchema}
+          onSubmit={
+            // Not Implemented yet
+            // eslint-disable-next-line no-console
+            val => console.log(val)
+          }
+        >
+          <CreateForm />
+        </Formik>
+      </div>
     </div>
-  </div>
-);
+  );
+};
 
 export default Create;
