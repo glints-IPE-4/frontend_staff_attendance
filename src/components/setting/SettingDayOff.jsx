@@ -3,7 +3,7 @@ import { InputNumber } from 'antd';
 
 function SettingDayOff() {
   const onChange = value => {
-    console.log('changed', value);
+    onChange('changed', value);
   };
   return (
     <div className='card'>
