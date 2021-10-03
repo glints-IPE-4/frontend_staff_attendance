@@ -7,13 +7,17 @@
   .card {
     min-width: 27%;
     flex-grow: 1;
-    height: 100px;
+    height: 140px;
     margin: 10px;
     .card-title {
       padding-bottom: 10px;
     }
-    input {
-      height: 20px;
+    .ant-picker {
+      height: 30px;
+      width: 94%;
+    }
+    .ant-input-number {
+      height: 30px;
       width: 94%;
     }
   }

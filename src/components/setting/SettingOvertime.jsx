@@ -1,35 +1,36 @@
-import React from 'react';
-import { TimePickerComponent } from '@syncfusion/ej2-react-calendars';
+import React, { useState } from 'react';
+import { TimePicker } from 'antd';
+import moment from 'moment';
 
-const SettingOvertime = () => {
-  const timeValueStart = new Date('');
-  const timeValueEnd = new Date('');
-  const minTime = new Date('01/01/2021 05:00 PM');
-  const maxTime = new Date('01/01/2021 09:00 PM');
-
+function SettingOvertime() {
+  const [startOvertime, setStartOvertime] = useState();
+  const onChangeStart = time => {
+    setStartOvertime(time);
+  };
+  const [endOvertime, setEndOvertime] = useState();
+  const onChangeEnd = time => {
+    setEndOvertime(time);
+  };
+  const format = 'HH:mm';
   return (
     <div className='card'>
-      <div className='card-tilte'>Work Set Overtimes</div>
-      <div>
-        <TimePickerComponent
-          value={timeValueStart}
-          min={minTime}
-          max={maxTime}
-          placeholder='Select a set Start Overtime'
-          floatLabelType='Auto'
-        />
-      </div>
-      <div>
-        <TimePickerComponent
-          value={timeValueEnd}
-          min={minTime}
-          max={maxTime}
-          placeholder='Select a set End Overtime'
-          floatLabelType='Auto'
-        />
-      </div>
+      <div className='card-title'>setting Overtime</div>
+      <TimePicker
+        placeholder='Select Clock in'
+        onChange={onChangeStart}
+        defaultValue={moment('19:00', format)}
+        value={startOvertime}
+        format={format}
+      />
+      <TimePicker
+        placeholder='Select Clock Out'
+        onChange={onChangeEnd}
+        defaultValue={moment('21:00', format)}
+        value={endOvertime}
+        format={format}
+      />
     </div>
   );
-};
+}
 
 export default SettingOvertime;

@@ -1,33 +1,36 @@
-import React from 'react';
-import { TimePickerComponent } from '@syncfusion/ej2-react-calendars';
+import React, { useState } from 'react';
+import moment from 'moment';
+import { TimePicker } from 'antd';
 
 const SettingWorkTime = () => {
-  const timeValueStart = new Date('');
-  const timeValueEnd = new Date('');
-  const minTime = new Date('01/01/2021 08:00 AM');
-  const maxTime = new Date('01/01/2021 05:00 PM');
+  const [startWork, setStartWork] = useState();
+  const onChangeStart = time => {
+    setStartWork(time);
+  };
+  const [endWork, setEndWork] = useState();
+  const onChangeEnd = time => {
+    setEndWork(time);
+  };
+  const format = 'HH:mm';
   return (
     <div className='card'>
-      <div className='card-tilte'>Work Set Time</div>
-      <div>
-        <TimePickerComponent
-          value={timeValueStart}
-          min={minTime}
-          max={maxTime}
-          placeholder='Select a set Start Work'
-          floatLabelType='Auto'
-        />
-      </div>
-      <div>
-        <TimePickerComponent
-          value={timeValueEnd}
-          min={minTime}
-          max={maxTime}
-          placeholder='Select a set End Work'
-          floatLabelType='Auto'
-        />
-      </div>
+      <div className='card-title'>Setting Office Time</div>
+      <TimePicker
+        placeholder='Select Clock in'
+        onChange={onChangeStart}
+        defaultValue={moment('08:00', format)}
+        value={startWork}
+        format={format}
+      />
+      <TimePicker
+        placeholder='Select Clock Out'
+        onChange={onChangeEnd}
+        defaultValue={moment('17:00', format)}
+        value={endWork}
+        format={format}
+      />
     </div>
   );
 };
+
 export default SettingWorkTime;
