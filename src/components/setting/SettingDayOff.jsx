@@ -15,7 +15,6 @@ function SettingDayOff() {
           placeholder='max Day Off'
           min={1}
           max={6}
-          defaultValue={3}
           value={values}
           onChange={onChange}
         />
