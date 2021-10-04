@@ -57,7 +57,7 @@ const SetOfficeLocation = props => {
 };
 
 SetOfficeLocation.propTypes = {
-  centering: PropTypes.string.isRequired,
+  centering: PropTypes.func.isRequired,
 };
 
 export default SetOfficeLocation;

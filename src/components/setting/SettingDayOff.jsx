@@ -21,8 +21,8 @@ const SettingDayOff = props => {
 };
 
 SettingDayOff.propTypes = {
-  dayOff: PropTypes.string.isRequired,
-  setDayOff: PropTypes.string.isRequired,
+  dayOff: PropTypes.number.isRequired,
+  setDayOff: PropTypes.number.isRequired,
 };
 
 export default SettingDayOff;
