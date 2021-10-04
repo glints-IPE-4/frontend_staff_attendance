@@ -74,12 +74,12 @@ const SettingOvertime = props => {
   );
 };
 SettingOvertime.propTypes = {
-  startOvertime: PropTypes.func.isRequired,
+  startOvertime: PropTypes.string.isRequired,
   setStartOvertime: PropTypes.func.isRequired,
   setEndOvertime: PropTypes.func.isRequired,
-  endOvertime: PropTypes.func.isRequired,
-  showStartOvertime: PropTypes.func.isRequired,
-  showEndOvertime: PropTypes.func.isRequired,
+  endOvertime: PropTypes.string.isRequired,
+  showStartOvertime: PropTypes.bool.isRequired,
+  showEndOvertime: PropTypes.bool.isRequired,
   setShowStartOvertime: PropTypes.func.isRequired,
   setShowEndOvertime: PropTypes.func.isRequired,
 };
