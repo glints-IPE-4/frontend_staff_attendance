@@ -88,11 +88,10 @@ const ClockInButton = ({ coords }) => {
         try {
           setLoadAtt(true);
           const res = await runAtt();
-          alert.error(res.data.message);
+          alert.info(res.data.message);
           setLoadAtt(false);
         } catch (error) {
           setLoadAtt(false);
-
           alert.error(error.response.data.message);
         }
       }}

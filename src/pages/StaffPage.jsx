@@ -36,7 +36,6 @@ const StaffPage = () => {
     }),
     { manual: true },
   );
-
   useEffect(() => {
     if (reqHeader.Authorization !== '') {
       getStaff();
