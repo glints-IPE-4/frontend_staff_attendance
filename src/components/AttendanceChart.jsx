@@ -1,18 +1,23 @@
-import Moment from 'moment';
-import { extendMoment } from 'moment-range';
+import axios from 'axios';
+import { useEffect, useState } from 'react';
 import Chart from 'react-apexcharts';
+import useAuth from '../providers/auth/context';
 
-const RangeDate = days => {
-  const moment = extendMoment(Moment);
-  const start = moment().subtract(days, 'days').format('YYYY-MM-DD');
-  const end = moment().format('YYYY-MM-DD');
-  const range = moment.range(start, end);
-  const acc = Array.from(range.by('day', { step: 1 }));
-  return acc.map(m => m.format('MMM Do'));
-};
 const AttendanceChart = () => {
-  const dates = RangeDate(7);
-  const option = {
+  const { reqHeader } = useAuth();
+  const [loading, setLoading] = useState(false);
+  const [sick, setSick] = useState([]);
+  const [alpha, setAlpha] = useState([]);
+  const [permit, setPermit] = useState([]);
+  const [late, setLate] = useState([]);
+  const [series, setSeries] = useState([
+    { name: 'Sick', data: sick },
+    { name: 'Late', data: late },
+    { name: 'Alpha', data: alpha },
+    { name: 'Permit', data: permit },
+  ]);
+
+  const [option, setOption] = useState({
     chart: {
       height: 350,
       type: 'line',
@@ -50,7 +55,9 @@ const AttendanceChart = () => {
       size: 5,
     },
     xaxis: {
-      categories: dates,
+      type: 'datetime',
+
+      max: Date.now(),
       title: {
         text: 'date',
       },
@@ -69,28 +76,78 @@ const AttendanceChart = () => {
       offsetY: -25,
       offsetX: -5,
     },
-  };
-  const series = [
-    {
-      name: 'Izin',
-      data: [4, 2, 5, 3, 7, 3, 2],
-    },
-    {
-      name: 'Sakit',
-      data: [6, 3, 4, 0, 3, 2, 6],
-    },
-    {
-      name: 'Telat',
-      data: [2, 4, 7, 3, 1, 2, 2],
-    },
-    {
-      name: 'Alpha',
-      data: [1, 0, 3, 0, 3, 2, 6],
-    },
-  ];
+  });
+
+  useEffect(() => {
+    const doIt = () => {
+      if (reqHeader.Authorization !== '') {
+        setLoading(true);
+        axios
+          .get(`http://staffattendanceipe4.herokuapp.com/auth/api/v1/chart?description=late`, {
+            headers: reqHeader,
+          })
+          .then(res => {
+            setLate(res.data.message);
+            setOption({
+              ...option,
+              xaxis: {
+                ...option.xaxis,
+                min: Date.now() - (res.data.message.length - 1) * 86400000,
+              },
+            });
+          });
+        axios
+          .get(`http://staffattendanceipe4.herokuapp.com/auth/api/v1/chart?description=permit`, {
+            headers: reqHeader,
+          })
+          .then(res => {
+            setPermit(res.data.message);
+          });
+        axios
+          .get(`http://staffattendanceipe4.herokuapp.com/auth/api/v1/chart?description=alpha`, {
+            headers: reqHeader,
+          })
+          .then(res => {
+            setAlpha(res.data.message);
+          });
+        axios
+          .get(`http://staffattendanceipe4.herokuapp.com/auth/api/v1/chart?description=sick`, {
+            headers: reqHeader,
+          })
+          .then(res => {
+            setSick(res.data.message);
+          });
+
+        setLoading(false);
+      }
+    };
+    doIt();
+  }, [reqHeader]);
+
+  useEffect(() => {
+    setSeries([
+      {
+        name: 'Sick',
+        data: sick.map((val, i) => [Date.now() - (sick.length - i - 1) * 86400000, val]),
+      },
+      {
+        name: 'Late',
+        data: late.map((val, i) => [Date.now() - (sick.length - i - 1) * 86400000, val]),
+      },
+      {
+        name: 'Alpha',
+        data: alpha.map((val, i) => [Date.now() - (sick.length - i - 1) * 86400000, val]),
+      },
+      {
+        name: 'Permit',
+        data: permit.map((val, i) => [Date.now() - (sick.length - i - 1) * 86400000, val]),
+      },
+    ]);
+  }, [sick, late, permit, alpha]);
+
   return (
     <div className='card chart'>
-      <Chart options={option} series={series} height='500' />
+      {loading ? 'Loading Chart ...' : <Chart options={option} series={series} height='500' />}
     </div>
   );
 };
