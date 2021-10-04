@@ -1,80 +1,113 @@
-import React from 'react';
-import { useSortBy, useTable } from 'react-table';
+import React, { useEffect, useState } from 'react';
+import PropTypes from 'prop-types';
+import axios from 'axios';
+import moment from 'moment';
+import useAuth from '../providers/auth/context';
+import Table from './Table';
 
-const StaffDetailsTable = () => {
+const StaffDetailsTable = ({ email }) => {
+  const [histories, setHistories] = useState([]);
+  const [overtime, setOvertime] = useState([]);
+  const [loading, setLoading] = useState(false);
+  const [error, setError] = useState(null);
+  const [month, setMonth] = useState(moment().format('M'));
+  const [year, setYear] = useState(moment().format('YYYY'));
+  const { reqHeader } = useAuth();
+  useEffect(() => {
+    const fetch = async () => {
+      try {
+        setError(null);
+        setLoading(true);
+        const res = await axios.get(
+          `http://staffattendanceipe4.herokuapp.com/auth/api/v1/attendancebystaff/${email}?month=${month}&year=${year}`,
+          {
+            headers: reqHeader,
+          },
+        );
+
+        setHistories([...res.data.attendance]);
+        setOvertime([...res.data.overtime]);
+        setLoading(false);
+      } catch (err) {
+        setError(err);
+        setLoading(false);
+      }
+    };
+    if (reqHeader.Authorization !== '') {
+      fetch();
+    }
+  }, [reqHeader, email, month, year]);
   const columns = React.useMemo(
     () => [
       {
-        Header: 'Date',
-        accessor: 'date',
+        Header: 'Day',
+        accessor: 'day',
       },
       {
         Header: 'Status',
-        accessor: 'status',
+        accessor: 'description',
+      },
+      {
+        Header: 'Total Hour',
+        accessor: 'totalhours',
       },
     ],
     [],
   );
-  const data = React.useMemo(
+  const columnsOver = React.useMemo(
     () => [
-      { date: '9 November 2001', status: 'masuk' },
-      { date: '8 November 2001', status: 'telat' },
-      { date: '7 November 2001', status: 'izin' },
-      { date: '6 November 2001', status: 'sakit' },
+      {
+        Header: 'Day',
+        accessor: 'day',
+      },
+      {
+        Header: 'Status',
+        accessor: 'description',
+      },
+      {
+        Header: 'Total Hour',
+        accessor: 'total_hours',
+      },
     ],
     [],
   );
 
-  const tableInstance = useTable(
-    {
-      columns,
-      data,
-    },
-    useSortBy,
-  );
-  const { getTableProps, getTableBodyProps, headerGroups, rows, prepareRow } = tableInstance;
-
-  const firstPageRows = rows.slice(0, 20);
-  const showSortIcon = column => {
-    if (column.isSorted) {
-      if (column.isSortedDesc) {
-        return ' 🔽';
-      }
-      return ' 🔼';
-    }
-    return '';
-  };
-
   return (
-    <table {...getTableProps()} className='table'>
-      <thead>
-        {headerGroups.map(headerGroup => (
-          <tr {...headerGroup.getHeaderGroupProps()}>
-            {headerGroup.headers.map(column => (
-              <th {...column.getHeaderProps(column.getSortByToggleProps())}>
-                {column.render('Header')}
-                <span>{showSortIcon(column)}</span>
-              </th>
-            ))}
-          </tr>
+    <>
+      <select value={month} onChange={event => setMonth(event.target.value)}>
+        {Array.from(Array(12).keys()).map(val => (
+          <option value={moment().subtract(val, 'months').format('M')}>
+            {moment().subtract(val, 'months').format('MMMM')}
+          </option>
         ))}
-      </thead>
-      <tbody {...getTableBodyProps()}>
-        {firstPageRows.map(row => {
-          prepareRow(row);
-          return (
-            <tr {...row.getRowProps()}>
-              {row.cells.map(cell => (
-                <td {...cell.getCellProps()} className={cell.name}>
-                  {cell.render('Cell')}
-                </td>
-              ))}
-            </tr>
-          );
-        })}
-      </tbody>
-    </table>
+      </select>
+      <select value={year} onChange={event => setYear(event.target.value)}>
+        {Array.from(Array(6).keys()).map(val => (
+          <option
+            value={moment()
+              .subtract(val - 3, 'years')
+              .format('YYYY')}
+          >
+            {moment()
+              .subtract(val - 3, 'years')
+              .format('YYYY')}
+          </option>
+        ))}
+      </select>
+      <div style={{ display: 'grid', marginTop: 24, gridTemplateColumns: '1fr 1fr' }}>
+        <div>
+          Attendance
+          <Table columns={columns} data={histories} loading={loading} error={error} />
+        </div>
+        <div>
+          Overtime
+          <Table columns={columnsOver} data={overtime} loading={loading} error={error} />
+        </div>
+      </div>
+    </>
   );
 };
+
+StaffDetailsTable.propTypes = { email: PropTypes.string.isRequired };
 
 export default StaffDetailsTable;

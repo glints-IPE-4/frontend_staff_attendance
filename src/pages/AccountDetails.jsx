@@ -92,7 +92,7 @@ const AccountDetails = () => {
             </div>
           </>
         )}
-        <StaffDetailsTable />
+        <StaffDetailsTable email={account.email} />
       </div>
     </div>
   );
