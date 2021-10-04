@@ -5,7 +5,6 @@ const center = {
   lat: -6.271301641287552,
   lng: 106.79733939731577,
 };
-// -6.271301641287552, 106.79733939731577
 
 function DraggableMarker() {
   const [draggable, setDraggable] = useState(false);

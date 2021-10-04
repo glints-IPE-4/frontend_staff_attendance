@@ -1,22 +1,18 @@
 import React, { useState } from 'react';
-import { InputNumber } from 'antd';
 
 function SettingDayOff() {
-  const [values, setValues] = useState();
-  const onChange = value => {
-    setValues(value);
-  };
+  const [num, setNum] = useState('2');
+
   return (
     <div className='card'>
       <div className='card-title'>setting Day Off</div>
       <div>
-        <InputNumber
-          aria-label='day off'
-          placeholder='max Day Off'
-          min={1}
-          max={6}
-          value={values}
-          onChange={onChange}
+        <input
+          type='number'
+          value={num}
+          min='1'
+          max='6'
+          onChange={event => setNum(event.target.value)}
         />
       </div>
     </div>

@@ -1,5 +1,4 @@
 import React from 'react';
-import 'antd/dist/antd.css';
 import SettingWorkTime from '../components/setting/SettingWorkTime';
 import SettingOvertime from '../components/setting/SettingOvertime';
 import SettingDayOff from '../components/setting/SettingDayOff';

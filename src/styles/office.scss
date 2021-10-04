@@ -9,19 +9,22 @@
     flex-grow: 1;
     height: 140px;
     margin: 10px;
+    .card-time {
+      .Start {
+        padding: 15px;
+        span {
+          margin-left: 23px;
+        }
+      }
+      .end {
+        padding: 15px;
+        span {
+          margin-left: 10px;
+        }
+      }
+    }
     .card-title {
       padding-bottom: 10px;
-    }
-    .ant-picker {
-      margin-bottom: 10px;
-    }
-    .ant-picker {
-      height: 30px;
-      width: 94%;
-    }
-    .ant-input-number {
-      height: 30px;
-      width: 94%;
     }
   }
   .leaflet-container {
