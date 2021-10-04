@@ -21,8 +21,6 @@ const OfficePage = () => {
     lng: 106.79733939731577,
   };
 
-  console.log(endTime);
-
   return (
     <div className='office'>
       <SettingWorkTime
