@@ -1,7 +1,8 @@
-import React, { useState } from 'react';
+import React from 'react';
+import PropTypes from 'prop-types';
 
-function SettingDayOff() {
-  const [num, setNum] = useState('2');
+const SettingDayOff = props => {
+  const { dayOff, setDayOff } = props;
 
   return (
     <div className='card'>
@@ -9,14 +10,19 @@ function SettingDayOff() {
       <div>
         <input
           type='number'
-          value={num}
+          value={dayOff}
           min='1'
           max='6'
-          onChange={event => setNum(event.target.value)}
+          onChange={event => setDayOff(event.target.value)}
         />
       </div>
     </div>
   );
-}
+};
+
+SettingDayOff.propTypes = {
+  dayOff: PropTypes.string.isRequired,
+  setDayOff: PropTypes.string.isRequired,
+};
 
 export default SettingDayOff;

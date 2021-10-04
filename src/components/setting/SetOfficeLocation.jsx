@@ -1,5 +1,6 @@
 import React, { useRef, useMemo, useState, useCallback } from 'react';
 import { MapContainer, Marker, Popup, TileLayer } from 'react-leaflet';
+import PropTypes from 'prop-types';
 
 const center = {
   lat: -6.271301641287552,
@@ -42,14 +43,21 @@ function DraggableMarker() {
   );
 }
 
-const SetOfficeLocation = () => (
-  <MapContainer center={center} zoom={13} scrollWheelZoom={false}>
-    <TileLayer
-      attribution='&copy; <a href="http://osm.org/copyright">OpenStreetMap</a> contributors'
-      url='https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png'
-    />
-    <DraggableMarker />
-  </MapContainer>
-);
+const SetOfficeLocation = props => {
+  const { centering } = props;
+  return (
+    <MapContainer center={centering} zoom={13} scrollWheelZoom={false}>
+      <TileLayer
+        attribution='&copy; <a href="http://osm.org/copyright">OpenStreetMap</a> contributors'
+        url='https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png'
+      />
+      <DraggableMarker />
+    </MapContainer>
+  );
+};
+
+SetOfficeLocation.propTypes = {
+  centering: PropTypes.string.isRequired,
+};
 
 export default SetOfficeLocation;

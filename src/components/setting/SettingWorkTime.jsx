@@ -1,12 +1,18 @@
-import React, { useState } from 'react';
+import React from 'react';
 import TimeKeeper from 'react-timekeeper';
+import PropTypes from 'prop-types';
 
-const SettingWorkTime = () => {
-  const [showStartTime, setShowStartTime] = useState(false);
-  const [showEndTime, setShowEndTime] = useState(false);
-  const [startTime, setStartTime] = useState('');
-  const [endTime, setEndTime] = useState('');
-
+const SettingWorkTime = props => {
+  const {
+    showStartTime,
+    setShowStartTime,
+    showEndTime,
+    setShowEndTime,
+    startTime,
+    setStartTime,
+    endTime,
+    setEndTime,
+  } = props;
   return (
     <div className='card'>
       <div className='card-title'>setting Work Time</div>
@@ -66,6 +72,17 @@ const SettingWorkTime = () => {
       </div>
     </div>
   );
+};
+
+SettingWorkTime.propTypes = {
+  startTime: PropTypes.string.isRequired,
+  setStartTime: PropTypes.string.isRequired,
+  setEndTime: PropTypes.string.isRequired,
+  endTime: PropTypes.string.isRequired,
+  showStartTime: PropTypes.string.isRequired,
+  showEndTime: PropTypes.string.isRequired,
+  setShowStartTime: PropTypes.string.isRequired,
+  setShowEndTime: PropTypes.string.isRequired,
 };
 
 export default SettingWorkTime;
