@@ -4,14 +4,14 @@ import PropTypes from 'prop-types';
 
 const SettingOvertime = props => {
   const {
-    showStartTime,
-    setShowStartTime,
-    showEndTime,
-    setShowEndTime,
-    startTime,
-    setStartTime,
-    endTime,
-    setEndTime,
+    showStartOvertime,
+    setShowStartOvertime,
+    showEndOvertime,
+    setShowEndOvertime,
+    startOvertime,
+    setStartOvertime,
+    endOvertime,
+    setEndOvertime,
   } = props;
   return (
     <div className='card'>
@@ -19,18 +19,18 @@ const SettingOvertime = props => {
       <div className='card-time'>
         <div className='Start'>
           Clock In :
-          {showStartTime && (
+          {showStartOvertime && (
             <TimeKeeper
-              time={startTime.formatted12}
-              onChange={newTime => setStartTime(newTime)}
-              onDoneClick={() => setShowStartTime(false)}
+              time={startOvertime.formatted12}
+              onChange={newTime => setStartOvertime(newTime)}
+              onDoneClick={() => setShowStartOvertime(false)}
               switchToMinuteOnHourSelect
               closeOnMinuteSelect
             />
           )}
-          {!showStartTime && (
+          {!showStartOvertime && (
             <span
-              onClick={() => setShowStartTime(true)}
+              onClick={() => setShowStartOvertime(true)}
               style={{
                 fontSize: '14px',
                 color: '#DC143C',
@@ -39,24 +39,24 @@ const SettingOvertime = props => {
               }}
               aria-hidden='true'
             >
-              {startTime.formatted12}
+              {startOvertime.formatted12}
             </span>
           )}
         </div>
         <div className='end'>
           Clock Out :
-          {showEndTime && (
+          {showEndOvertime && (
             <TimeKeeper
-              time={endTime.formatted12}
-              onChange={newTime => setEndTime(newTime)}
-              onDoneClick={() => setShowEndTime(false)}
+              time={endOvertime.formatted12}
+              onChange={newTime => setEndOvertime(newTime)}
+              onDoneClick={() => setShowEndOvertime(false)}
               switchToMinuteOnHourSelect
               closeOnMinuteSelect
             />
           )}
-          {!showEndTime && (
+          {!showEndOvertime && (
             <span
-              onClick={() => setShowEndTime(true)}
+              onClick={() => setShowEndOvertime(true)}
               style={{
                 fontSize: '14px',
                 color: '#DC143C',
@@ -65,7 +65,7 @@ const SettingOvertime = props => {
               }}
               aria-hidden='true'
             >
-              {endTime.formatted12}
+              {endOvertime.formatted12}
             </span>
           )}
         </div>
@@ -74,13 +74,13 @@ const SettingOvertime = props => {
   );
 };
 SettingOvertime.propTypes = {
-  startTime: PropTypes.string.isRequired,
-  setStartTime: PropTypes.string.isRequired,
-  setEndTime: PropTypes.string.isRequired,
-  endTime: PropTypes.string.isRequired,
-  showStartTime: PropTypes.string.isRequired,
-  showEndTime: PropTypes.string.isRequired,
-  setShowStartTime: PropTypes.string.isRequired,
-  setShowEndTime: PropTypes.string.isRequired,
+  startOvertime: PropTypes.func.isRequired,
+  setStartOvertime: PropTypes.func.isRequired,
+  setEndOvertime: PropTypes.func.isRequired,
+  endOvertime: PropTypes.func.isRequired,
+  showStartOvertime: PropTypes.func.isRequired,
+  showEndOvertime: PropTypes.func.isRequired,
+  setShowStartOvertime: PropTypes.func.isRequired,
+  setShowEndOvertime: PropTypes.func.isRequired,
 };
 export default SettingOvertime;

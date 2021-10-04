@@ -75,14 +75,14 @@ const SettingWorkTime = props => {
 };
 
 SettingWorkTime.propTypes = {
-  startTime: PropTypes.string.isRequired,
-  setStartTime: PropTypes.string.isRequired,
-  setEndTime: PropTypes.string.isRequired,
-  endTime: PropTypes.string.isRequired,
-  showStartTime: PropTypes.string.isRequired,
-  showEndTime: PropTypes.string.isRequired,
-  setShowStartTime: PropTypes.string.isRequired,
-  setShowEndTime: PropTypes.string.isRequired,
+  startTime: PropTypes.func.isRequired,
+  setStartTime: PropTypes.func.isRequired,
+  setEndTime: PropTypes.func.isRequired,
+  endTime: PropTypes.func.isRequired,
+  showStartTime: PropTypes.func.isRequired,
+  showEndTime: PropTypes.func.isRequired,
+  setShowStartTime: PropTypes.func.isRequired,
+  setShowEndTime: PropTypes.func.isRequired,
 };
 
 export default SettingWorkTime;
