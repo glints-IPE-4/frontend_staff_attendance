@@ -42,26 +42,27 @@ const DraggableMarker = props => {
 DraggableMarker.propTypes = {
   position: PropTypes.objectOf(PropTypes.oneOfType([PropTypes.number, PropTypes.string]))
     .isRequired,
-  setPosition: PropTypes.objectOf(PropTypes.oneOfType([PropTypes.number, PropTypes.string]))
-    .isRequired,
+  setPosition: PropTypes.func.isRequired,
 };
 
 const SetOfficeLocation = props => {
-  const { center } = props;
+  const { position, setPosition, center } = props;
   return (
-    <div>
-      <MapContainer center={center} zoom={13} scrollWheelZoom={false}>
-        <TileLayer
-          attribution='&copy; <a href="http://osm.org/copyright">OpenStreetMap</a> contributors'
-          url='https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png'
-        />
-        <DraggableMarker />
-      </MapContainer>
-    </div>
+    <MapContainer center={center} zoom={13} scrollWheelZoom={false}>
+      <TileLayer
+        attribution='&copy; <a href="http://osm.org/copyright">OpenStreetMap</a> contributors'
+        url='https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png'
+      />
+
+      <DraggableMarker position={position} setPosition={setPosition} />
+    </MapContainer>
   );
 };
 SetOfficeLocation.propTypes = {
   center: PropTypes.objectOf(PropTypes.oneOfType([PropTypes.number, PropTypes.string])).isRequired,
+  position: PropTypes.objectOf(PropTypes.oneOfType([PropTypes.number, PropTypes.string]))
+    .isRequired,
+  setPosition: PropTypes.func.isRequired,
 };
 
 export default SetOfficeLocation;
