@@ -20,53 +20,49 @@ const SettingOvertime = props => {
         <div className='Start'>
           Clock In :
           {showStartOvertime && (
-            <TimeKeeper
-              time={startOvertime.formatted12}
-              onChange={newTime => setStartOvertime(newTime)}
-              onDoneClick={() => setShowStartOvertime(false)}
-              switchToMinuteOnHourSelect
-              closeOnMinuteSelect
-            />
+            <div className='popup'>
+              <TimeKeeper
+                time={startOvertime.formatted12}
+                onChange={newTime => setStartOvertime(newTime)}
+                onDoneClick={() => setShowStartOvertime(false)}
+                switchToMinuteOnHourSelect
+                closeOnMinuteSelect
+              />
+            </div>
           )}
           {!showStartOvertime && (
-            <span
+            <button
+              type='button'
+              className='button-field'
               onClick={() => setShowStartOvertime(true)}
-              style={{
-                fontSize: '14px',
-                color: '#DC143C',
-                backgroundColor: '#e5e5e5',
-                padding: '10px',
-              }}
               aria-hidden='true'
             >
               {startOvertime.formatted12}
-            </span>
+            </button>
           )}
         </div>
         <div className='end'>
           Clock Out :
           {showEndOvertime && (
-            <TimeKeeper
-              time={endOvertime.formatted12}
-              onChange={newTime => setEndOvertime(newTime)}
-              onDoneClick={() => setShowEndOvertime(false)}
-              switchToMinuteOnHourSelect
-              closeOnMinuteSelect
-            />
+            <div className='popup'>
+              <TimeKeeper
+                time={endOvertime.formatted12}
+                onChange={newTime => setEndOvertime(newTime)}
+                onDoneClick={() => setShowEndOvertime(false)}
+                switchToMinuteOnHourSelect
+                closeOnMinuteSelect
+              />
+            </div>
           )}
           {!showEndOvertime && (
-            <span
+            <button
+              type='button'
+              className='button-field'
               onClick={() => setShowEndOvertime(true)}
-              style={{
-                fontSize: '14px',
-                color: '#DC143C',
-                backgroundColor: '#e5e5e5',
-                padding: '10px',
-              }}
               aria-hidden='true'
             >
               {endOvertime.formatted12}
-            </span>
+            </button>
           )}
         </div>
       </div>

@@ -20,53 +20,48 @@ const SettingWorkTime = props => {
         <div className='Start'>
           Clock In :
           {showStartTime && (
-            <TimeKeeper
-              time={startTime.formatted12}
-              onChange={newTime => setStartTime(newTime)}
-              onDoneClick={() => setShowStartTime(false)}
-              switchToMinuteOnHourSelect
-              closeOnMinuteSelect
-            />
+            <div className='popup'>
+              <div className='popup-inner'>
+                <TimeKeeper
+                  time={startTime.formatted12}
+                  onChange={newTime => setStartTime(newTime)}
+                  onDoneClick={() => setShowStartTime(false)}
+                  switchToMinuteOnHourSelect
+                  closeOnMinuteSelect
+                />
+              </div>
+            </div>
           )}
           {!showStartTime && (
-            <span
-              onClick={() => setShowStartTime(true)}
-              style={{
-                fontSize: '14px',
-                color: '#DC143C',
-                backgroundColor: '#e5e5e5',
-                padding: '10px',
-              }}
-              aria-hidden='true'
-            >
+            <button className='button-field' type='button' onClick={() => setShowStartTime(true)}>
               {startTime.formatted12}
-            </span>
+            </button>
           )}
         </div>
         <div className='end'>
           Clock Out :
           {showEndTime && (
-            <TimeKeeper
-              time={endTime.formatted12}
-              onChange={newTime => setEndTime(newTime)}
-              onDoneClick={() => setShowEndTime(false)}
-              switchToMinuteOnHourSelect
-              closeOnMinuteSelect
-            />
+            <div className='popup'>
+              <div className='popup-inner'>
+                <TimeKeeper
+                  time={endTime.formatted12}
+                  onChange={newTime => setEndTime(newTime)}
+                  onDoneClick={() => setShowEndTime(false)}
+                  switchToMinuteOnHourSelect
+                  closeOnMinuteSelect
+                />
+              </div>
+            </div>
           )}
           {!showEndTime && (
-            <span
+            <button
+              className='button-field'
+              type='button'
               onClick={() => setShowEndTime(true)}
-              style={{
-                fontSize: '14px',
-                color: '#DC143C',
-                backgroundColor: '#e5e5e5',
-                padding: '10px',
-              }}
               aria-hidden='true'
             >
               {endTime.formatted12}
-            </span>
+            </button>
           )}
         </div>
       </div>
