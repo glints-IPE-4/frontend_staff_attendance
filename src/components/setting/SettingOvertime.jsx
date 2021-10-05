@@ -1,18 +1,11 @@
-import React from 'react';
+import React, { useState } from 'react';
 import TimeKeeper from 'react-timekeeper';
 import PropTypes from 'prop-types';
 
 const SettingOvertime = props => {
-  const {
-    showStartOvertime,
-    setShowStartOvertime,
-    showEndOvertime,
-    setShowEndOvertime,
-    startOvertime,
-    setStartOvertime,
-    endOvertime,
-    setEndOvertime,
-  } = props;
+  const { startOvertime, setStartOvertime, endOvertime, setEndOvertime } = props;
+  const [showStartOvertime, setShowStartOvertime] = useState(false);
+  const [showEndOvertime, setShowEndOvertime] = useState(false);
   return (
     <div className='card'>
       <div className='card-title'>setting Work Time</div>
@@ -74,9 +67,5 @@ SettingOvertime.propTypes = {
   setStartOvertime: PropTypes.func.isRequired,
   setEndOvertime: PropTypes.func.isRequired,
   endOvertime: PropTypes.string.isRequired,
-  showStartOvertime: PropTypes.bool.isRequired,
-  showEndOvertime: PropTypes.bool.isRequired,
-  setShowStartOvertime: PropTypes.func.isRequired,
-  setShowEndOvertime: PropTypes.func.isRequired,
 };
 export default SettingOvertime;
