@@ -1,9 +1,9 @@
 import React, { useEffect, useState } from 'react';
-import { useSortBy, useTable } from 'react-table';
 import PropTypes from 'prop-types';
 import { Link } from 'react-router-dom';
 import { useRequest } from 'ahooks';
 import useAuth from '../providers/auth/context';
+import Table from '../components/Table';
 
 const ActionCell = ({ value }) => (
   <div className='button-details'>
@@ -36,7 +36,6 @@ const StaffPage = () => {
     }),
     { manual: true },
   );
-
   useEffect(() => {
     if (reqHeader.Authorization !== '') {
       getStaff();
@@ -85,23 +84,6 @@ const StaffPage = () => {
     ],
     [],
   );
-  const showSortIcon = column => {
-    if (column.isSorted) {
-      if (column.isSortedDesc) {
-        return ' 🔽';
-      }
-      return ' 🔼';
-    }
-    return '';
-  };
-  const tableInstance = useTable(
-    {
-      columns,
-      data: listStaff,
-    },
-    useSortBy,
-  );
-  const { getTableProps, getTableBodyProps, headerGroups, rows, prepareRow } = tableInstance;
 
   return (
     <div className='staff-view'>
@@ -109,38 +91,7 @@ const StaffPage = () => {
         <Link to='staff/new'>
           <div className='button rounded'>Add New Staff</div>
         </Link>
-        <table {...getTableProps()} className='table'>
-          <thead>
-            {headerGroups.map(headerGroup => (
-              <tr {...headerGroup.getHeaderGroupProps()}>
-                {headerGroup.headers.map(column => (
-                  <th {...column.getHeaderProps(column.getSortByToggleProps())}>
-                    {column.render('Header')}
-                    <span>{showSortIcon(column)}</span>
-                  </th>
-                ))}
-              </tr>
-            ))}
-          </thead>
-          {loading ? (
-            <div>Loading...</div>
-          ) : (
-            <tbody {...getTableBodyProps()}>
-              {rows.map(row => {
-                prepareRow(row);
-                return (
-                  <tr {...row.getRowProps()}>
-                    {row.cells.map(cell => (
-                      <td {...cell.getCellProps()} className={cell.name}>
-                        {cell.render('Cell')}
-                      </td>
-                    ))}
-                  </tr>
-                );
-              })}
-            </tbody>
-          )}
-        </table>
+        <Table columns={columns} data={listStaff} loading={loading} />
       </div>
     </div>
   );

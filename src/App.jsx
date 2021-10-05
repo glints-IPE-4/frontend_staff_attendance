@@ -1,3 +1,4 @@
+/* eslint-disable react/button-has-type */
 import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
 import Layout from './components/Layout';
 import DashboardPage from './pages/DashboardPage';
@@ -11,6 +12,8 @@ import './styles/index.scss';
 import StaffDetails from './pages/StaffDetails';
 import { AuthProvider } from './providers/auth/context';
 import PrivateRoute from './components/PrivateRoute';
+import AccountDetails from './pages/AccountDetails';
+import ListCreateAccount from './pages/ListCreateAccount';
 
 function App() {
   return (
@@ -23,8 +26,10 @@ function App() {
           <PrivateRoute path='/staff/new' exact component={Layout(AddStaff)} />
           <PrivateRoute path='/staff/:id' exact component={Layout(StaffDetails)} />
           <PrivateRoute path='/account' exact component={Layout(AccountPage)} />
-          <PrivateRoute path='/account/create' exact component={Layout(CreateAccount)} />
-          <Route path='/office' exact component={Layout(OfficePage)} />
+          <PrivateRoute path='/account/create' exact component={Layout(ListCreateAccount)} />
+          <PrivateRoute path='/account/create/:nip' exact component={Layout(CreateAccount)} />
+          <PrivateRoute path='/account/:email' exact component={Layout(AccountDetails)} />
+          <PrivateRoute path='/office' exact component={Layout(OfficePage)} />
         </Switch>
       </AuthProvider>
     </Router>

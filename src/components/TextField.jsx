@@ -2,7 +2,7 @@ import { useField } from 'formik';
 import React from 'react';
 import PropTypes from 'prop-types';
 
-const TextField = ({ name, label, placeholder, autoComplete, type }) => {
+const TextField = ({ name, label, placeholder, autoComplete, type, disabled }) => {
   const [field, meta] = useField(name);
   const showError = meta.touched && meta.error;
   return (
@@ -11,6 +11,7 @@ const TextField = ({ name, label, placeholder, autoComplete, type }) => {
       {showError && <p className='error-message'>{meta.error}</p>}
 
       <input
+        disabled={disabled}
         className='input'
         placeholder={placeholder}
         autoComplete={autoComplete}
@@ -26,12 +27,15 @@ const TextField = ({ name, label, placeholder, autoComplete, type }) => {
 
 TextField.propTypes = {
   name: PropTypes.string.isRequired,
-  label: PropTypes.string.isRequired,
+  label: PropTypes.string,
   placeholder: PropTypes.string.isRequired,
   type: PropTypes.string.isRequired,
   autoComplete: PropTypes.string,
+  disabled: PropTypes.bool,
 };
 TextField.defaultProps = {
   autoComplete: '',
+  disabled: false,
+  label: '',
 };
 export default TextField;
