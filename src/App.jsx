@@ -8,19 +8,25 @@ import OfficePage from './pages/OfficePage';
 import AddStaff from './components/New';
 import CreateAccount from './components/Create';
 import './styles/index.scss';
+import StaffDetails from './pages/StaffDetails';
+import { AuthProvider } from './providers/auth/context';
+import PrivateRoute from './components/PrivateRoute';
 
 function App() {
   return (
     <Router>
-      <Switch>
-        <Route path='/login' component={LoginPage} />
-        <Route path='/' exact component={Layout(DashboardPage)} />
-        <Route path='/staff' exact component={Layout(StaffPage)} />
-        <Route path='/staff/new' exact component={Layout(AddStaff)} />
-        <Route path='/account' exact component={Layout(AccountPage)} />
-        <Route path='/account/create' exact component={Layout(CreateAccount)} />
-        <Route path='/office' exact component={Layout(OfficePage)} />
-      </Switch>
+      <AuthProvider>
+        <Switch>
+          <Route path='/login' component={LoginPage} />
+          <PrivateRoute path='/' exact component={Layout(DashboardPage)} />
+          <PrivateRoute path='/staff' exact component={Layout(StaffPage)} />
+          <PrivateRoute path='/staff/new' exact component={Layout(AddStaff)} />
+          <PrivateRoute path='/staff/:id' exact component={Layout(StaffDetails)} />
+          <PrivateRoute path='/account' exact component={Layout(AccountPage)} />
+          <PrivateRoute path='/account/create' exact component={Layout(CreateAccount)} />
+          <Route path='/office' exact component={Layout(OfficePage)} />
+        </Switch>
+      </AuthProvider>
     </Router>
   );
 }
