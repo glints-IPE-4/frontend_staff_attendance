@@ -43,7 +43,7 @@ const OfficePage = () => {
         setLateTime={setLateTime}
       />
       <SetOfficeLocation center={center} position={position} setPosition={setPosition} />
-      <button className=' button-save' type='button' onClick=''>
+      <button className=' button-save' type='button'>
         Save
       </button>
     </div>
