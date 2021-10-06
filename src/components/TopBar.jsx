@@ -22,7 +22,7 @@ const TopBar = ({ isGeolocationAvailable, isGeolocationEnabled, coords, position
         <div className='date'>
           <Moment interval={1000} format='MMM Do YYYY, h:mm:ss a' />
         </div>
-        {checkButton()}
+        {(auth.role === 'staff' || auth.role === 'hr') && checkButton()}
       </div>
 
       <div className='header-role'>

@@ -1,4 +1,3 @@
-/* eslint-disable no-unused-vars */
 import React, { useEffect, useState } from 'react';
 import axios from 'axios';
 import moment from 'moment';
@@ -10,22 +9,7 @@ import RequestOvertime from '../components/RequestOvertime';
 import AttendanceChart from '../components/AttendanceChart';
 import useAuth from '../providers/auth/context';
 import RequestDayOffButton from '../components/RequestDayOffButton';
-
-const listDayOffs = [
-  { name: 'Jake Blossom', status: 'Sakit', id: 1 },
-  { name: 'Billy Agusta', status: 'Sakit', id: 2 },
-  { name: 'Dany Jo', status: 'Sakit', id: 3 },
-  { name: 'Afan Dayu Laksono', status: 'Sakit', id: 4 },
-  { name: 'Afan Dayu Laksono', status: 'Sakit', id: 5 },
-  { name: 'Afan Dayu Laksono', status: 'Sakit', id: 6 },
-  { name: 'Afan Dayu Laksono', status: 'Sakit', id: 7 },
-];
-const requestDayOffs = [
-  { name: 'Jake Blossom', status: 'Sakit', id: 1 },
-  { name: 'Billy Agusta', status: 'Sakit', id: 2 },
-  { name: 'Dany Jo', status: 'Sakit', id: 3 },
-  { name: 'Afan Dayu Laksono', status: 'Sakit', id: 4 },
-];
+import StaffDetailsTable from '../components/StaffDetailsTable';
 
 const DashboardPage = () => {
   const [overtimes, setOvertime] = useState([]);
@@ -34,7 +18,7 @@ const DashboardPage = () => {
   const [reqDayoff, setReqDayoff] = useState([]);
   const [loading, setLoading] = useState(false);
   const [loadingOver, setLoadingOver] = useState(false);
-  const { reqHeader } = useAuth();
+  const { reqHeader, auth } = useAuth();
   const alert = useAlert();
   useEffect(() => {
     const fetch = async () => {
@@ -86,81 +70,94 @@ const DashboardPage = () => {
       setLoadingOver(false);
     }
   };
-
+  const authorize = () => auth.role === 'hr' || auth.role === 'admin';
   return (
     <div className='view'>
-      <AttendanceChart />
-      <div className='card chart'>
-        <button
-          type='button'
-          disabled={loadingOver}
-          onClick={doReqOvertime}
-          className='button rounded'
-        >
-          {loadingOver ? 'Loading...' : 'Request Overtime'}
-        </button>
-        <RequestDayOffButton />
-      </div>
-      <div className='card'>
-        <div className='card-title'>List Day Off</div>
-        <div className='list-staff-container'>
-          {dayoff.map(listDayOf => (
-            <ListDayOff
-              key={listDayOf.iddayoff}
-              name={listDayOf.email_staff}
-              status={listDayOf.description}
-              isAccepted={listDayOf.is_accepted}
-              date={listDayOf.date}
-              proof={listDayOf.proof}
-              notes={listDayOf.notes}
-            />
-          ))}
-        </div>
-      </div>
-      <div className='card'>
-        <div className='card-title'>Day Off Request</div>
-        <div className='list-staff-container'>
-          {reqDayoff.map(requestDayOff => (
-            <RequestDayOff
-              key={requestDayOff.iddayoff}
-              name={requestDayOff.email_staff}
-              status={requestDayOff.description}
-              date={requestDayOff.date}
-              proof={requestDayOff.proof}
-              id={requestDayOff.iddayoff}
-            />
-          ))}
-        </div>
-      </div>
+      {authorize() && <AttendanceChart />}
 
-      <div className='card'>
-        <div className='card-title'>List Overtime</div>
-        <div className='list-staff-container'>
-          {!loading &&
-            overtimes.map(listOvertime => (
-              <ListOvertime
-                key={`${listOvertime.idovertime}${listOvertime.name}`}
-                name={listOvertime.email_staff}
-                isAccepted={listOvertime.is_accepted}
-                status={listOvertime.date}
-                notes={listOvertime.notes}
-              />
-            ))}
+      <div className='card chart'>
+        <div>
+          <button
+            type='button'
+            disabled={loadingOver}
+            onClick={doReqOvertime}
+            className='button rounded'
+            style={{ marginRight: 24 }}
+          >
+            {loadingOver ? 'Loading...' : 'Request Overtime'}
+          </button>
+          <RequestDayOffButton />
         </div>
+        {!authorize() && (
+          <div style={{ marginTop: 24 }}>
+            <StaffDetailsTable email={auth.email} />
+          </div>
+        )}
       </div>
-      <div className='card'>
-        <div className='card-title'>Overtime Request</div>
-        <div className='list-staff-container'>
-          {reqOvertimes.map(reqOvertime => (
-            <RequestOvertime
-              key={`${reqOvertime.idovertime}${reqOvertime.name}`}
-              name={reqOvertime.email_staff}
-              status={reqOvertime.date}
-              id={reqOvertime.idovertime}
-            />
-          ))}
-        </div>
-      </div>
+      {authorize() && (
+        <>
+          <div className='card'>
+            <div className='card-title'>List Day Off</div>
+            <div className='list-staff-container'>
+              {dayoff.map(listDayOf => (
+                <ListDayOff
+                  key={listDayOf.iddayoff}
+                  name={listDayOf.email_staff}
+                  status={listDayOf.description}
+                  isAccepted={listDayOf.is_accepted}
+                  date={listDayOf.date}
+                  proof={listDayOf.proof}
+                  notes={listDayOf.notes}
+                />
+              ))}
+            </div>
+          </div>
+          <div className='card'>
+            <div className='card-title'>Day Off Request</div>
+            <div className='list-staff-container'>
+              {reqDayoff.map(requestDayOff => (
+                <RequestDayOff
+                  key={requestDayOff.iddayoff}
+                  name={requestDayOff.email_staff}
+                  status={requestDayOff.description}
+                  date={requestDayOff.date}
+                  proof={requestDayOff.proof}
+                  id={requestDayOff.iddayoff}
+                />
+              ))}
+            </div>
+          </div>
+
+          <div className='card'>
+            <div className='card-title'>List Overtime</div>
+            <div className='list-staff-container'>
+              {!loading &&
+                overtimes.map(listOvertime => (
+                  <ListOvertime
+                    key={`${listOvertime.idovertime}${listOvertime.name}`}
+                    name={listOvertime.email_staff}
+                    isAccepted={listOvertime.is_accepted}
+                    status={listOvertime.date}
+                    notes={listOvertime.notes}
+                  />
+                ))}
+            </div>
+          </div>
+          <div className='card'>
+            <div className='card-title'>Overtime Request</div>
+            <div className='list-staff-container'>
+              {reqOvertimes.map(reqOvertime => (
+                <RequestOvertime
+                  key={`${reqOvertime.idovertime}${reqOvertime.name}`}
+                  name={reqOvertime.email_staff}
+                  status={reqOvertime.date}
+                  id={reqOvertime.idovertime}
+                />
+              ))}
+            </div>
+          </div>
+        </>
+      )}
     </div>
   );
 };
