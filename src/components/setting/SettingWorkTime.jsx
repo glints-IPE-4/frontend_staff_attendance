@@ -17,7 +17,7 @@ const SettingWorkTime = props => {
             <div className='popup'>
               <div className='popup-inner'>
                 <TimeKeeper
-                  time={startTime.formatted12}
+                  time={startTime.formatted24}
                   onChange={newTime => setStartTime(newTime)}
                   onDoneClick={() => setShowStartTime(false)}
                   switchToMinuteOnHourSelect
@@ -28,7 +28,7 @@ const SettingWorkTime = props => {
           )}
           {!showStartTime && (
             <button className='button-field' type='button' onClick={() => setShowStartTime(true)}>
-              {startTime.formatted12}
+              {startTime.formatted24}
             </button>
           )}
         </div>
