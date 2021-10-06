@@ -51,6 +51,7 @@ const OfficePage = () => {
 
       setloading(false);
       history.push('/office');
+      alert.show('Berhasil!');
     } catch (error) {
       setloading(false);
       alert.error(error.response.data.message);
