@@ -15,7 +15,7 @@ const SettingDayOff = props => {
             <div className='popup'>
               <div className='popup-inner'>
                 <TimeKeeper
-                  time={lateTime.formatted12}
+                  time={lateTime.formatted24}
                   onChange={newTime => setLateTime(newTime)}
                   onDoneClick={() => setShowLateTime(false)}
                   switchToMinuteOnHourSelect
@@ -26,13 +26,18 @@ const SettingDayOff = props => {
           )}
           {!showLateTime && (
             <button className='button-field' type='button' onClick={() => setShowLateTime(true)}>
-              {lateTime.formatted12}
+              {lateTime.formatted24}
             </button>
           )}
         </div>
         <div className='maxdayoff'>
           Max Day Off :
-          <input type='number' value={dayOff} onChange={event => setDayOff(event.target.value)} />
+          <input
+            type='number'
+            min={1}
+            value={dayOff}
+            onChange={event => setDayOff(event.target.value)}
+          />
         </div>
       </div>
     </div>

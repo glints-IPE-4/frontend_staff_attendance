@@ -52,6 +52,7 @@ const OfficePage = () => {
       setloading(false);
       history.push('/office');
     } catch (error) {
+      setloading(false);
       alert.error(error.response.data.message);
     }
   };
@@ -73,7 +74,7 @@ const OfficePage = () => {
           setStartOvertime({ formatted24: res.data.message.start_overtime.slice(0, 5) });
           setEndOvertime({ formatted24: res.data.message.finish_overtime.slice(0, 5) });
           setDayOff(res.data.message.max_dayoff);
-          setLateTime({ formatted12: res.data.message.max_late.slice(0, 5) });
+          setLateTime({ formatted24: res.data.message.max_late.slice(0, 5) });
           setPosition({ lat: res.data.message.latitude, lng: res.data.message.longitude });
           setloading(false);
         } catch (error) {
