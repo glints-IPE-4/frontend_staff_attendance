@@ -14,6 +14,7 @@ import { AuthProvider } from './providers/auth/context';
 import PrivateRoute from './components/PrivateRoute';
 import AccountDetails from './pages/AccountDetails';
 import ListCreateAccount from './pages/ListCreateAccount';
+import ChangePassword from './pages/ChangePassword';
 
 function App() {
   return (
@@ -30,6 +31,7 @@ function App() {
           <PrivateRoute path='/account/create/:nip' exact component={Layout(CreateAccount)} />
           <PrivateRoute path='/account/:email' exact component={Layout(AccountDetails)} />
           <PrivateRoute path='/office' exact component={Layout(OfficePage)} />
+          <PrivateRoute path='/changepassword' exact component={Layout(ChangePassword)} />
         </Switch>
       </AuthProvider>
     </Router>

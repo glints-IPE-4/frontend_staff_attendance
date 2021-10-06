@@ -8,7 +8,8 @@ const menuItems = [
   { name: 'Dashboard', to: '/', Icon: Category, exact: true },
   { name: 'Staff', to: '/staff', Icon: Users, exact: false },
   { name: 'Account', to: '/account', Icon: Users, exact: false },
-  { name: 'office', to: '/office', Icon: Settings, exact: false },
+  { name: 'Office', to: '/office', Icon: Settings, exact: false },
+  { name: 'Change Password', to: '/changepassword', Icon: Settings, exact: false },
 ];
 
 const Sidebar = () => (
