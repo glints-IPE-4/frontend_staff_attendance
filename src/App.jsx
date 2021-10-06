@@ -15,6 +15,7 @@ import AccountDetails from './pages/AccountDetails';
 import ListCreateAccount from './pages/ListCreateAccount';
 import ChangePassword from './pages/ChangePassword';
 import useAuth from './providers/auth/context';
+import EditStaff from './pages/EditStaff';
 
 function App() {
   const { auth } = useAuth();
@@ -23,19 +24,19 @@ function App() {
       <Route path='/login' component={LoginPage} />
       <PrivateRoute path='/' exact component={Layout(DashboardPage)} />
       <PrivateRoute path='/changepassword' exact component={Layout(ChangePassword)} />
-      {auth.role === 'hr' ||
-        (auth.role === 'admin' && (
-          <>
-            <PrivateRoute path='/staff' exact component={Layout(StaffPage)} />
-            <PrivateRoute path='/staff/new' exact component={Layout(AddStaff)} />
-            <PrivateRoute path='/staff/:id' exact component={Layout(StaffDetails)} />
-            <PrivateRoute path='/account' exact component={Layout(AccountPage)} />
-            <PrivateRoute path='/account/create' exact component={Layout(ListCreateAccount)} />
-            <PrivateRoute path='/account/create/:nip' exact component={Layout(CreateAccount)} />
-            <PrivateRoute path='/account/:email' exact component={Layout(AccountDetails)} />
-            <PrivateRoute path='/office' exact component={Layout(OfficePage)} />
-          </>
-        ))}
+      {(auth.role === 'hr' || auth.role === 'admin') && (
+        <>
+          <PrivateRoute path='/staff' exact component={Layout(StaffPage)} />
+          <PrivateRoute path='/staff/new' exact component={Layout(AddStaff)} />
+          <PrivateRoute path='/staff/edit/:id' exact component={Layout(EditStaff)} />
+          <PrivateRoute path='/staff/:id' exact component={Layout(StaffDetails)} />
+          <PrivateRoute path='/account' exact component={Layout(AccountPage)} />
+          <PrivateRoute path='/account/create' exact component={Layout(ListCreateAccount)} />
+          <PrivateRoute path='/account/create/:nip' exact component={Layout(CreateAccount)} />
+          <PrivateRoute path='/account/:email' exact component={Layout(AccountDetails)} />
+          <PrivateRoute path='/office' exact component={Layout(OfficePage)} />
+        </>
+      )}
     </Switch>
   );
 }
