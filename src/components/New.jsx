@@ -63,14 +63,7 @@ const New = () => {
     <div className='add-staff'>
       <div className='add-staff-main'>
         <h4>Add New Staff</h4>
-        <Formik
-          initialValues={initialValues}
-          onSubmit={
-            // Not Implemented yet
-            // eslint-disable-next-line no-console
-            val => onSubmit(val)
-          }
-        >
+        <Formik initialValues={initialValues} onSubmit={val => onSubmit(val)}>
           {({ handleSubmit }) => (
             <div>
               <Form className='form'>
@@ -98,7 +91,7 @@ const New = () => {
                   type='tel'
                   pattern='[0-9]{3}-[0-9]{2}-[0-9]{3}'
                 />
-                <TextField name='Address' placeholder='Address' type='address' />
+                <TextField name='address' placeholder='Address' type='address' />
                 <button
                   className='add-new-button'
                   disabled={loading}

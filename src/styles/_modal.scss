@@ -1,0 +1,19 @@
+.modal-body {
+  min-width: 400px;
+  .title {
+    font-size: 24px;
+  }
+  .content {
+    display: flex;
+    flex-direction: column;
+    textarea {
+      width: 100%;
+    }
+    .btn-group {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      margin-top: 24px;
+      gap: 10px;
+    }
+  }
+}
