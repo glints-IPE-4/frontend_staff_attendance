@@ -63,16 +63,18 @@ const OfficePage = () => {
           const res = await axios.get(
             'http://staffattendanceipe4.herokuapp.com/auth/api/v1/config',
             {
-              header: reqHeader,
+              headers: reqHeader,
             },
           );
-          setStartTime(res.data.startTime);
-          setEndTime(res.data.endTime);
-          setStartOvertime(res.data.startOvertime);
-          setEndOvertime(res.data.endOvertime);
-          setDayOff(res.data.dayOff);
-          setLateTime(res.data.lateTime);
-          setLateTime(res.data.lateTime);
+          setStartTime({
+            formatted24: res.data.message.start_working.slice(0, 5),
+          });
+          setEndTime({ formatted24: res.data.message.finish_working.slice(0, 5) });
+          setStartOvertime({ formatted24: res.data.message.start_overtime.slice(0, 5) });
+          setEndOvertime({ formatted24: res.data.message.finish_overtime.slice(0, 5) });
+          setDayOff(res.data.message.max_dayoff);
+          setLateTime({ formatted12: res.data.message.max_late.slice(0, 5) });
+          setPosition({ lat: res.data.message.latitude, lng: res.data.message.longitude });
           setloading(false);
         } catch (error) {
           setloading(false);

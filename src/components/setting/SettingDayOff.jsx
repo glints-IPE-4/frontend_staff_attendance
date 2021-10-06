@@ -9,17 +9,7 @@ const SettingDayOff = props => {
     <div className='card'>
       <div className='card-title'>setting Day Off</div>
       <div className='card-time'>
-        <div className='start'>
-          Max Request Day Off :
-          <input
-            type='number'
-            value={dayOff}
-            min='1'
-            max='6'
-            onChange={event => setDayOff(event.target.value)}
-          />
-        </div>
-        <div className='Start'>
+        <div className='maxlate'>
           Max Late :
           {showLateTime && (
             <div className='popup'>
@@ -39,6 +29,10 @@ const SettingDayOff = props => {
               {lateTime.formatted12}
             </button>
           )}
+        </div>
+        <div className='maxdayoff'>
+          Max Day Off :
+          <input type='number' value={dayOff} onChange={event => setDayOff(event.target.value)} />
         </div>
       </div>
     </div>

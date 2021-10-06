@@ -54,7 +54,7 @@ const SettingWorkTime = props => {
               onClick={() => setShowEndTime(true)}
               aria-hidden='true'
             >
-              {endTime.formatted12}
+              {endTime.formatted24}
             </button>
           )}
         </div>
