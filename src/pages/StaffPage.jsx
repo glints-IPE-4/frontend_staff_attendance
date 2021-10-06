@@ -1,9 +1,10 @@
+/* eslint-disable no-unused-vars */
 import React, { useEffect, useState } from 'react';
 import PropTypes from 'prop-types';
 import { Link } from 'react-router-dom';
 import { useRequest } from 'ahooks';
+import { useSortBy, useTable } from 'react-table';
 import useAuth from '../providers/auth/context';
-import Table from '../components/Table';
 
 const ActionCell = ({ value }) => (
   <div className='button-details'>
@@ -84,14 +85,72 @@ const StaffPage = () => {
     ],
     [],
   );
+  const tableInstance = useTable(
+    {
+      columns,
+      data: listStaff,
+    },
+    useSortBy,
+  );
+  const { getTableProps, getTableBodyProps, headerGroups, rows, prepareRow } = tableInstance;
 
+  const showSortIcon = column => {
+    if (column.isSorted) {
+      if (column.isSortedDesc) {
+        return '🔽';
+      }
+      return '🔼';
+    }
+    return '';
+  };
+  const tableBody = () => {
+    if (loading)
+      return (
+        <tbody>
+          <tr>
+            <td>Loading...</td>
+          </tr>
+        </tbody>
+      );
+
+    return (
+      <tbody {...getTableBodyProps()}>
+        {rows.map(row => {
+          prepareRow(row);
+          return (
+            <tr {...row.getRowProps()}>
+              {row.cells.map(cell => (
+                <td {...cell.getCellProps()} className={cell.name}>
+                  {cell.render('Cell')}
+                </td>
+              ))}
+            </tr>
+          );
+        })}
+      </tbody>
+    );
+  };
   return (
     <div className='staff-view'>
       <div className='card '>
         <Link to='staff/new'>
           <div className='button rounded'>Add New Staff</div>
         </Link>
-        <Table columns={columns} data={listStaff} loading={loading} />
+        <table {...getTableProps()} className='table'>
+          <thead>
+            {headerGroups.map(headerGroup => (
+              <tr {...headerGroup.getHeaderGroupProps()}>
+                {headerGroup.headers.map(column => (
+                  <th {...column.getHeaderProps(column.getSortByToggleProps())}>
+                    {column.render('Header')}
+                    <span>{showSortIcon(column)}</span>
+                  </th>
+                ))}
+              </tr>
+            ))}
+          </thead>
+          {tableBody()}
+        </table>
       </div>
     </div>
   );
