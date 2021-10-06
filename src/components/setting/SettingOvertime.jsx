@@ -8,7 +8,7 @@ const SettingOvertime = props => {
   const [showEndOvertime, setShowEndOvertime] = useState(false);
   return (
     <div className='card'>
-      <div className='card-title'>setting Work Time</div>
+      <div className='card-title'>setting Overtime</div>
       <div className='card-time'>
         <div className='Start'>
           Clock In :
