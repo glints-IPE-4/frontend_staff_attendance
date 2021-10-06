@@ -9,11 +9,9 @@ const options = {
   position: positions.MIDDLE,
 };
 ReactDOM.render(
-  <React.StrictMode>
-    <Provider template={AlertMUITemplate} {...options}>
-      <App />
-    </Provider>
-  </React.StrictMode>,
+  <Provider template={AlertMUITemplate} {...options}>
+    <App />
+  </Provider>,
   document.getElementById('root'),
 );
 

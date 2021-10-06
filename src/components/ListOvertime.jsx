@@ -44,7 +44,7 @@ ListOvertime.propTypes = {
   name: PropTypes.string.isRequired,
   status: PropTypes.string.isRequired,
   notes: PropTypes.string.isRequired,
-  isAccepted: PropTypes.bool.isRequired,
+  isAccepted: PropTypes.string.isRequired,
 };
 
 export default ListOvertime;

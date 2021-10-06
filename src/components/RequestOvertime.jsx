@@ -29,7 +29,7 @@ const customStyles = {
     border: 'none',
   },
 };
-const ModalRequest = ({ id, name, modalIsOpen, closeModal, accept }) => {
+export const ModalRequest = ({ title, name, modalIsOpen, closeModal, accept, url }) => {
   const alert = useAlert();
   const [loading, setLoading] = useState(false);
   const [value, setValue] = useState('');
@@ -38,7 +38,7 @@ const ModalRequest = ({ id, name, modalIsOpen, closeModal, accept }) => {
     try {
       setLoading(true);
       await axios.put(
-        `http://staffattendanceipe4.herokuapp.com/auth/api/v1/overtime/${id}`,
+        url,
         {
           email_staff: name,
           is_accepted: `${isAccepted}`,
@@ -66,7 +66,9 @@ const ModalRequest = ({ id, name, modalIsOpen, closeModal, accept }) => {
       contentLabel='Accept Overtime'
     >
       <div className='modal-body'>
-        <h2 className='title'>{accept ? 'Accept' : 'Reject'} Overtime</h2>
+        <h2 className='title'>
+          {accept ? 'Accept' : 'Reject'} {title}
+        </h2>
         <div className='content'>
           <textarea
             placeholder='Notes'
@@ -100,10 +102,14 @@ const ModalRequest = ({ id, name, modalIsOpen, closeModal, accept }) => {
 };
 ModalRequest.propTypes = {
   name: PropTypes.string.isRequired,
-  id: PropTypes.number.isRequired,
+  title: PropTypes.string.isRequired,
+  url: PropTypes.string.isRequired,
   modalIsOpen: PropTypes.bool.isRequired,
-  accept: PropTypes.bool.isRequired,
+  accept: PropTypes.bool,
   closeModal: PropTypes.func.isRequired,
+};
+ModalRequest.defaultProps = {
+  accept: false,
 };
 const RequestOvertime = props => {
   const { name, status, id } = props;
@@ -127,16 +133,19 @@ const RequestOvertime = props => {
     <span>
       <ModalRequest
         name={name}
-        id={id}
         accept
+        title='Overtime'
         modalIsOpen={modalIsOpenAcc}
         closeModal={() => closeModalAcc()}
+        url={`http://staffattendanceipe4.herokuapp.com/auth/api/v1/overtime/${id}`}
       />
+
       <ModalRequest
         name={name}
-        id={id}
+        title='Overtime'
         modalIsOpen={modalIsOpenRej}
         closeModal={() => closeModalRej()}
+        url={`http://staffattendanceipe4.herokuapp.com/auth/api/v1/overtime/${id}`}
       />
       <div className='list-staff'>
         <div className='list-staff-group'>
