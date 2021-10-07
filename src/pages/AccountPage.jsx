@@ -10,12 +10,6 @@ const ActionCell = ({ value }) => (
     <Link to={`account/${value}`}>
       <div className='edit-button rounded'>Details</div>
     </Link>
-    <Link to={`account/edit/${value}`}>
-      <div className='edit-button rounded'>Edit</div>
-    </Link>
-    <Link to={`account/delete/${value}`}>
-      <div className='delete-button rounded'>Delete</div>
-    </Link>
   </div>
 );
 ActionCell.propTypes = {
