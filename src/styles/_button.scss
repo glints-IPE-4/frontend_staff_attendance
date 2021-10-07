@@ -5,6 +5,12 @@
   color: white;
   border: none;
   cursor: pointer;
+  &.danger {
+    background-color: #c03221;
+    &:hover {
+      background-color: #be1300;
+    }
+  }
   &.rounded {
     border-radius: 100px;
   }

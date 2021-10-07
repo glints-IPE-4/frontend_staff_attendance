@@ -1,6 +1,5 @@
 import Moment from 'react-moment';
 import { geolocated, geoPropTypes } from 'react-geolocated';
-import Frame from '../assets/svg/Frame.svg';
 import Notification from '../assets/svg/Notification.svg';
 import Logout from '../assets/svg/Logout.svg';
 import useAuth from '../providers/auth/context';
@@ -22,14 +21,17 @@ const TopBar = ({ isGeolocationAvailable, isGeolocationEnabled, coords, position
         <div className='date'>
           <Moment interval={1000} format='MMM Do YYYY, h:mm:ss a' />
         </div>
-        {checkButton()}
+        {(auth.role === 'staff' || auth.role === 'hr') && checkButton()}
       </div>
 
       <div className='header-role'>
         <div className='notif'>
           <img src={Notification} alt='Notification' />
         </div>
-        <img src={Frame} alt='Frame' />
+        <img
+          src={`https://avatars.dicebear.com/api/big-smile/${auth.email}.svg?size=50`}
+          alt='Frame'
+        />
         <div className='staff'>
           <div className='header-staff'>{auth.email}</div>
           <div className='role-staff'>{auth.role}</div>

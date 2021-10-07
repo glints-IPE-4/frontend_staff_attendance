@@ -3,17 +3,21 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import { positions, Provider } from 'react-alert';
 import AlertMUITemplate from 'react-alert-template-mui';
+import { BrowserRouter as Router } from 'react-router-dom';
 import App from './App';
+import { AuthProvider } from './providers/auth/context';
 
 const options = {
   position: positions.MIDDLE,
 };
 ReactDOM.render(
-  <React.StrictMode>
-    <Provider template={AlertMUITemplate} {...options}>
-      <App />
-    </Provider>
-  </React.StrictMode>,
+  <Provider template={AlertMUITemplate} {...options}>
+    <Router>
+      <AuthProvider>
+        <App />
+      </AuthProvider>
+    </Router>
+  </Provider>,
   document.getElementById('root'),
 );
 

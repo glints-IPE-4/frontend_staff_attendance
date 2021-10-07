@@ -2,11 +2,11 @@ import React, { useEffect, useState } from 'react';
 import PropTypes from 'prop-types';
 import axios from 'axios';
 import moment from 'moment';
+import { useSortBy, useTable } from 'react-table';
 import useAuth from '../providers/auth/context';
-import Table from './Table';
 
 const StaffDetailsTable = ({ email }) => {
-  const [histories, setHistories] = useState([]);
+  const [histories, setHistories] = useState(['']);
   const [overtime, setOvertime] = useState([]);
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState(null);
@@ -54,6 +54,7 @@ const StaffDetailsTable = ({ email }) => {
     ],
     [],
   );
+
   const columnsOver = React.useMemo(
     () => [
       {
@@ -71,7 +72,78 @@ const StaffDetailsTable = ({ email }) => {
     ],
     [],
   );
+  const tableInstanceHis = useTable(
+    {
+      columns,
+      data: histories,
+    },
+    useSortBy,
+  );
+  const tableInstanceOver = useTable(
+    {
+      columns: columnsOver,
+      data: overtime,
+    },
+    useSortBy,
+  );
+  const {
+    getTableProps: getTablePropsH,
+    getTableBodyProps: getTableBodyPropsH,
+    headerGroups: headerGroupsH,
+    rows: rowsH,
+    prepareRow: prepareRowH,
+  } = tableInstanceHis;
+  const {
+    getTableProps: getTablePropsO,
+    getTableBodyProps: getTableBodyPropsO,
+    headerGroups: headerGroupsO,
+    rows: rowsO,
+    prepareRow: prepareRowO,
+  } = tableInstanceOver;
 
+  const showSortIcon = column => {
+    if (column.isSorted) {
+      if (column.isSortedDesc) {
+        return '🔽';
+      }
+      return '🔼';
+    }
+    return '';
+  };
+  const tableBody = (getTableBodyProps, rows, prepareRow) => {
+    if (loading)
+      return (
+        <tbody>
+          <tr>
+            <td>Loading...</td>
+          </tr>
+        </tbody>
+      );
+    if (error)
+      return (
+        <tbody>
+          <tr>
+            <td>{error.response.data.message}.</td>
+          </tr>
+        </tbody>
+      );
+    return (
+      <tbody {...getTableBodyProps()}>
+        {rows.map(row => {
+          prepareRow(row);
+          return (
+            <tr {...row.getRowProps()}>
+              {row.cells.map(cell => (
+                <td {...cell.getCellProps()} className={cell.name}>
+                  {cell.render('Cell')}
+                </td>
+              ))}
+            </tr>
+          );
+        })}
+      </tbody>
+    );
+  };
   return (
     <>
       <select value={month} onChange={event => setMonth(event.target.value)}>
@@ -97,11 +169,39 @@ const StaffDetailsTable = ({ email }) => {
       <div style={{ display: 'grid', marginTop: 24, gridTemplateColumns: '1fr 1fr' }}>
         <div>
           Attendance
-          <Table columns={columns} data={histories} loading={loading} error={error} />
+          <table {...getTablePropsH()} className='table'>
+            <thead>
+              {headerGroupsH.map(headerGroup => (
+                <tr {...headerGroup.getHeaderGroupProps()}>
+                  {headerGroup.headers.map(column => (
+                    <th {...column.getHeaderProps(column.getSortByToggleProps())}>
+                      {column.render('Header')}
+                      <span>{showSortIcon(column)}</span>
+                    </th>
+                  ))}
+                </tr>
+              ))}
+            </thead>
+            {tableBody(getTableBodyPropsH, rowsH, prepareRowH)}
+          </table>
         </div>
         <div>
           Overtime
-          <Table columns={columnsOver} data={overtime} loading={loading} error={error} />
+          <table {...getTablePropsO()} className='table'>
+            <thead>
+              {headerGroupsO.map(headerGroup => (
+                <tr {...headerGroup.getHeaderGroupProps()}>
+                  {headerGroup.headers.map(column => (
+                    <th {...column.getHeaderProps(column.getSortByToggleProps())}>
+                      {column.render('Header')}
+                      <span>{showSortIcon(column)}</span>
+                    </th>
+                  ))}
+                </tr>
+              ))}
+            </thead>
+            {tableBody(getTableBodyPropsO, rowsO, prepareRowO)}
+          </table>
         </div>
       </div>
     </>

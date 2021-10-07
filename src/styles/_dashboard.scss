@@ -29,6 +29,7 @@
     .list-staff {
       display: flex;
       justify-content: space-between;
+      margin-bottom: 20px;
 
       .list-staff-group {
         display: flex;
@@ -49,17 +50,25 @@
         }
       }
       .status-staff-masuk {
-        width: 33px;
-        height: 13px;
+        align-self: flex-start;
+        display: flex;
         border-radius: 10px;
-        padding: 0px;
+        padding: 3px 5px;
         text-align: center;
         font-size: 10px;
         color: white;
         display: flex;
         justify-content: center;
         align-items: center;
-        background-color: #1aa053;
+        &.accept {
+          background-color: #1aa053;
+        }
+        &.reject {
+          background-color: #c03221;
+        }
+        &.info {
+          background-color: #08b1ba;
+        }
       }
       .status-staff-sakit {
         width: 33px;

@@ -1,4 +1,5 @@
 import { Form, Formik } from 'formik';
+import { useAlert } from 'react-alert';
 import LoginImg from '../assets/images/loginImg.png';
 import TextField from '../components/TextField';
 import useAuth from '../providers/auth/context';
@@ -11,7 +12,7 @@ const initialValues = {
 const LoginPage = () => {
   const { login } = useAuth();
   const { run: doLogin, loading, error } = login;
-
+  const alert = useAlert();
   return (
     <div className='login-container'>
       <div className='left'>
@@ -27,6 +28,7 @@ const LoginPage = () => {
               } catch (err) {
                 // eslint-disable-next-line no-console
                 console.log(err);
+                alert.error('Try Again');
               }
             }}
           >
