@@ -8,14 +8,14 @@ const SettingOvertime = props => {
   const [showEndOvertime, setShowEndOvertime] = useState(false);
   return (
     <div className='card'>
-      <div className='card-title'>setting Work Time</div>
+      <div className='card-title'>setting Overtime</div>
       <div className='card-time'>
         <div className='Start'>
           Clock In :
           {showStartOvertime && (
             <div className='popup'>
               <TimeKeeper
-                time={startOvertime.formatted12}
+                time={startOvertime.formatted24}
                 onChange={newTime => setStartOvertime(newTime)}
                 onDoneClick={() => setShowStartOvertime(false)}
                 switchToMinuteOnHourSelect
@@ -30,7 +30,7 @@ const SettingOvertime = props => {
               onClick={() => setShowStartOvertime(true)}
               aria-hidden='true'
             >
-              {startOvertime.formatted12}
+              {startOvertime.formatted24}
             </button>
           )}
         </div>
@@ -39,7 +39,7 @@ const SettingOvertime = props => {
           {showEndOvertime && (
             <div className='popup'>
               <TimeKeeper
-                time={endOvertime.formatted12}
+                time={endOvertime.formatted24}
                 onChange={newTime => setEndOvertime(newTime)}
                 onDoneClick={() => setShowEndOvertime(false)}
                 switchToMinuteOnHourSelect
@@ -54,7 +54,7 @@ const SettingOvertime = props => {
               onClick={() => setShowEndOvertime(true)}
               aria-hidden='true'
             >
-              {endOvertime.formatted12}
+              {endOvertime.formatted24}
             </button>
           )}
         </div>

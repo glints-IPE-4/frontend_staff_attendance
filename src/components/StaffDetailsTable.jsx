@@ -6,7 +6,7 @@ import { useSortBy, useTable } from 'react-table';
 import useAuth from '../providers/auth/context';
 
 const StaffDetailsTable = ({ email }) => {
-  const [histories, setHistories] = useState([]);
+  const [histories, setHistories] = useState(['']);
   const [overtime, setOvertime] = useState([]);
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState(null);

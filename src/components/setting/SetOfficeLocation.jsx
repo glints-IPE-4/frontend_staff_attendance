@@ -46,9 +46,9 @@ DraggableMarker.propTypes = {
 };
 
 const SetOfficeLocation = props => {
-  const { position, setPosition, center } = props;
+  const { position, setPosition } = props;
   return (
-    <MapContainer center={center} zoom={13} scrollWheelZoom={false}>
+    <MapContainer center={position} zoom={13} scrollWheelZoom={false}>
       <TileLayer
         attribution='&copy; <a href="http://osm.org/copyright">OpenStreetMap</a> contributors'
         url='https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png'
@@ -59,7 +59,6 @@ const SetOfficeLocation = props => {
   );
 };
 SetOfficeLocation.propTypes = {
-  center: PropTypes.objectOf(PropTypes.oneOfType([PropTypes.number, PropTypes.string])).isRequired,
   position: PropTypes.objectOf(PropTypes.oneOfType([PropTypes.number, PropTypes.string]))
     .isRequired,
   setPosition: PropTypes.func.isRequired,
